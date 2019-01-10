@@ -27,7 +27,7 @@
 
 #begin KenPixelBlocks.spritefont
 /importer:FontDescriptionImporter
-/processor:LocalizedFontProcessor
+/processor:FontDescriptionProcessor
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /build:KenPixelBlocks.spritefont

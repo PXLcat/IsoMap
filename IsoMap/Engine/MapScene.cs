@@ -40,8 +40,8 @@ namespace IsoMap.Engine
         {
             mainGame.spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null); //SamplerState.PointClamp => Permet de resize du pixel art sans blur
 
-            Tools.DrawTiled(mainGame.spriteBatch, isometricGrid, 10, 10, Vector2.Zero);
-
+            Tools.DrawTiled(mainGame.spriteBatch, isometricGrid, 15, 20, Vector2.Zero);
+            
 
             base.Draw(gameTime);
 

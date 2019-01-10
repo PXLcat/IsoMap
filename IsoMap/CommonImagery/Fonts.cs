@@ -32,7 +32,7 @@ namespace IsoMap.Engine
 
         public void Load(MainGame mG) {
             this.mG = mG;
-            kenPixel16 = mG.Content.Load<SpriteFont>("KenPixel");
+            kenPixel16 = mG.Content.Load<SpriteFont>("KenPixelBlocks");
         }
 
         public Vector2 GetOffsetToCenterText(Vector2 frame, SpriteFont font, String text)
