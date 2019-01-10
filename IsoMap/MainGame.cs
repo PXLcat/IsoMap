@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using IsoMap.Engine;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -7,15 +8,17 @@ namespace IsoMap
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
-    public class Game1 : Game
+    public class MainGame : Game
     {
         GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
+        public SpriteBatch spriteBatch;
+        public Gamestate gameState;
 
-        public Game1()
+        public MainGame()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            gameState = new Gamestate(this);
         }
 
         /// <summary>
@@ -26,7 +29,11 @@ namespace IsoMap
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            graphics.PreferredBackBufferWidth = 800;  // set this value to the desired width of your window
+            graphics.PreferredBackBufferHeight = 600;   // set this value to the desired height of your window
+            graphics.ApplyChanges();
+
+            gameState.ChangeScene(Gamestate.SceneType.MAP);
 
             base.Initialize();
         }
@@ -62,7 +69,10 @@ namespace IsoMap
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            // TODO: Add your update logic here
+            if (gameState.CurrentScene != null)
+            {
+                gameState.CurrentScene.Update(gameTime);
+            }
 
             base.Update(gameTime);
         }
@@ -73,9 +83,13 @@ namespace IsoMap
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Black);
 
             // TODO: Add your drawing code here
+            if (gameState.CurrentScene != null)
+            {
+                gameState.CurrentScene.Draw(gameTime);
+            }
 
             base.Draw(gameTime);
         }

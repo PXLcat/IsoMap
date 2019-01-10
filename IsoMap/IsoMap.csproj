@@ -41,7 +41,15 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Game1.cs" />
+    <Compile Include="CommonImagery\Fonts.cs" />
+    <Compile Include="Engine\Character.cs" />
+    <Compile Include="Engine\Factory.cs" />
+    <Compile Include="Engine\Gamestate.cs" />
+    <Compile Include="Engine\Input.cs" />
+    <Compile Include="Engine\MapScene.cs" />
+    <Compile Include="Engine\Scene.cs" />
+    <Compile Include="Engine\Tools.cs" />
+    <Compile Include="MainGame.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
