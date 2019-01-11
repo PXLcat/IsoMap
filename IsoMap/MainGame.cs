@@ -46,8 +46,6 @@ namespace IsoMap
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            RenderTarget2D target = new RenderTarget2D(GraphicsDevice, 400, 300);
-            GraphicsDevice.SetRenderTarget(target);
 
             // TODO: use this.Content to load your game content here
         }

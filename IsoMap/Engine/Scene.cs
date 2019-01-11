@@ -83,8 +83,8 @@ namespace IsoMap.Engine
 
 #if DEBUG
             mouse = Mouse.GetState();
-            mouseText = mouse.Position.X + ":" + mouse.Position.Y;
-            mouseTextPos = new Vector2(windowWidth - Fonts.Instance.kenPixel16.MeasureString(mouseText).X, 0);
+            mouseText = mouse.Position.X/2 + ":" + mouse.Position.Y/2;//attention /2 dépendant
+            mouseTextPos = new Vector2(windowWidth/2 - Fonts.Instance.kenPixel16.MeasureString(mouseText).X, 0); //(attention, le /2 est trop dépendant)
 #endif
 
         }
