@@ -13,6 +13,36 @@
 
 #---------------------------------- Content ---------------------------------#
 
+#begin décor neige tiles.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:décor neige tiles.png
+
+#begin décor neige tiles.tsx
+/copy:décor neige tiles.tsx
+
+#begin herbe hiver.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:herbe hiver.png
+
+#begin herbe hiver.tsx
+/copy:herbe hiver.tsx
+
 #begin isogrid.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -31,4 +61,7 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /build:KenPixelBlocks.spritefont
+
+#begin testiso.tmx
+/copy:testiso.tmx
 

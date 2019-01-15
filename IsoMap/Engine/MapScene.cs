@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TiledSharp;
 
 namespace IsoMap.Engine
 {
@@ -14,6 +15,7 @@ namespace IsoMap.Engine
         Texture2D isometricGrid;
         RenderTarget2D renderTarget;
 
+        IsometricMap snowMap;
 
         public MapScene(MainGame mG) : base(mG)
         {
@@ -25,6 +27,9 @@ namespace IsoMap.Engine
             isometricGrid = mainGame.Content.Load<Texture2D>("isogrid");
 
             renderTarget = new RenderTarget2D(mainGame.GraphicsDevice, 400, 300);//pas sûr de la taille à mettre (doublon de dans le Draw() )
+
+            snowMap = new IsometricMap(); // pas super
+            snowMap.Load(mainGame.Content);
 
             base.Load();
                        
@@ -38,6 +43,8 @@ namespace IsoMap.Engine
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+            snowMap.Update();
+            snowMap.Update();
         }
 
         protected void DrawSceneToTexture(RenderTarget2D renderTarget, GameTime gameTime)
@@ -53,6 +60,8 @@ namespace IsoMap.Engine
 
             mainGame.spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null); //SamplerState.PointClamp => Permet de resize du pixel art sans blur
             Tools.DrawTiled(mainGame.spriteBatch, isometricGrid, 13, 19, Vector2.Zero);
+
+            snowMap.Draw(mainGame.spriteBatch);
 
             base.Draw(gameTime);
 
