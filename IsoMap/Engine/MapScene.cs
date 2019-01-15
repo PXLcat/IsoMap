@@ -27,6 +27,7 @@ namespace IsoMap.Engine
             isometricGrid = mainGame.Content.Load<Texture2D>("isogrid");
 
             renderTarget = new RenderTarget2D(mainGame.GraphicsDevice, 400, 300);//pas sûr de la taille à mettre (doublon de dans le Draw() )
+            //renderTarget = new RenderTarget2D(mainGame.GraphicsDevice, 800, 600);//pas sûr de la taille à mettre (doublon de dans le Draw() )
 
             snowMap = new IsometricMap(); // pas super
             snowMap.Load(mainGame.Content);

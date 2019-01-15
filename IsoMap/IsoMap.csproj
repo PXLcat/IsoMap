@@ -43,7 +43,7 @@
   <ItemGroup>
     <Compile Include="CommonImagery\Fonts.cs" />
     <Compile Include="Engine\Character.cs" />
-    <Compile Include="Engine\EngineMap.cs" />
+    <Compile Include="Engine\IsometricMap.cs" />
     <Compile Include="Engine\Factory.cs" />
     <Compile Include="Engine\Gamestate.cs" />
     <Compile Include="Engine\Input.cs" />
