@@ -41,15 +41,20 @@ namespace IsoMap.Engine
                 //snowMap.Layers[i]
                 for (int y = 0; y < snowMap.Layers[i].Tiles.Count; y++) // Pour chaque tile
                 {
+                    int orthogonalX = 0;
+                    int orthogonalY = 0;
+
                     if (snowMap.Layers[i].Tiles[y].Gid != 0)
                     {
                         if (snowMap.Layers[i].Tiles[y].Gid < snowMap.Tilesets[1].FirstGid) //Correspond au 1er tileset //TODO généraliser les noms de variable et nombres de layer
                         {
-                            spriteBatch.Draw(tilesetsTextures.Values.ElementAt(0), new Rectangle(originTileCoord
+                            spriteBatch.Draw(tilesetsTextures.Values.ElementAt(0)
+                                //destinationRectangle :
+                                , new Rectangle(new Point(originTileCoord.X + (snowMap.Tilesets[0].TileWidth / 2)*y, originTileCoord.Y+(snowMap.Tilesets[0].TileHeight / 2) * y)
                                 , new Point(snowMap.Tilesets[0].TileWidth, snowMap.Tilesets[0].TileHeight))
+                                //sourceRectangle :
                                 , new Rectangle((snowMap.Layers[i].Tiles[y].Gid - 1) % snowMap.Tilesets[0].Columns.Value * snowMap.Tilesets[0].TileWidth
                                 , (int)Math.Floor((double)(snowMap.Layers[i].Tiles[y].Gid/ snowMap.Tilesets[0].Columns.Value) * snowMap.Tilesets[0].TileHeight)
-                                //, Math.Floor((double)(2/1))
                                 , snowMap.Tilesets[0].TileWidth
                                 , snowMap.Tilesets[0].TileHeight)
                                 , Color.White);
