@@ -38,11 +38,15 @@ namespace IsoMap.Engine
         {
             for (int i = 0; i < snowMap.Layers.Count; i++)// Pour chaque layer
             {
+                int orthogonalX = 0;
+                int orthogonalY = 0;
+
                 //snowMap.Layers[i]
                 for (int y = 0; y < snowMap.Layers[i].Tiles.Count; y++) // Pour chaque tile
                 {
-                    int orthogonalX = 0;
-                    int orthogonalY = 0;
+
+
+
 
                     if (snowMap.Layers[i].Tiles[y].Gid != 0)
                     {
@@ -50,7 +54,8 @@ namespace IsoMap.Engine
                         {
                             spriteBatch.Draw(tilesetsTextures.Values.ElementAt(0)
                                 //destinationRectangle :
-                                , new Rectangle(new Point(originTileCoord.X + (snowMap.Tilesets[0].TileWidth / 2)*y, originTileCoord.Y+(snowMap.Tilesets[0].TileHeight / 2) * y)
+                                , new Rectangle(new Point(originTileCoord.X + (snowMap.Tilesets[0].TileWidth / 2)* orthogonalX - (orthogonalY* (snowMap.Tilesets[0].TileHeight/2))
+                                    , originTileCoord.Y+((snowMap.Tilesets[0].TileHeight / 2) * orthogonalX) + (orthogonalY * (snowMap.Tilesets[0].TileWidth / 2)))
                                 , new Point(snowMap.Tilesets[0].TileWidth, snowMap.Tilesets[0].TileHeight))
                                 //sourceRectangle :
                                 , new Rectangle((snowMap.Layers[i].Tiles[y].Gid - 1) % snowMap.Tilesets[0].Columns.Value * snowMap.Tilesets[0].TileWidth
@@ -65,6 +70,13 @@ namespace IsoMap.Engine
                         {
 
                         }
+                    }
+                    orthogonalX++;
+                    if (orthogonalX >= snowMap.Width) //en théorie le = devrait suffire
+                    {
+                        orthogonalX = 0;
+                        orthogonalY++;
+
                     }
                 }
             }
