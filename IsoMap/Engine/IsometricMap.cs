@@ -25,7 +25,8 @@ namespace IsoMap.Engine
             tilesetsTextures.Add("grassTileset", contentManager.Load<Texture2D>(snowMap.Tilesets[0].Name));//se référer à l'ordre dans le xml
             tilesetsTextures.Add("decorNeigeTileset", contentManager.Load<Texture2D>(snowMap.Tilesets[1].Name));//TODO générer par Factory
 
-            originTileCoord = new Point(snowMap.Tilesets[0].TileWidth * (snowMap.Width / 4) - snowMap.Tilesets[0].TileWidth / 2, 0);
+            //originTileCoord = new Point(snowMap.Tilesets[0].TileWidth * (snowMap.Width / 4) - snowMap.Tilesets[0].TileWidth / 2, 0);
+            originTileCoord = new Point(160, 0); //à suppr
             originBlockCoord = new Point(snowMap.Tilesets[0].TileWidth * (snowMap.Width / 2) - snowMap.Tilesets[0].TileWidth / 2,
                 -snowMap.Tilesets[0].TileHeight); //attention tout se base sur les dimensions du premier tileset
 
@@ -54,8 +55,8 @@ namespace IsoMap.Engine
                         {
                             spriteBatch.Draw(tilesetsTextures.Values.ElementAt(0)
                                 //destinationRectangle :
-                                , new Rectangle(new Point(originTileCoord.X + (snowMap.Tilesets[0].TileWidth / 2)* orthogonalX - (orthogonalY* (snowMap.Tilesets[0].TileHeight/2))
-                                    , originTileCoord.Y+((snowMap.Tilesets[0].TileHeight / 2) * orthogonalX) + (orthogonalY * (snowMap.Tilesets[0].TileWidth / 2)))
+                                , new Rectangle(new Point(originTileCoord.X + (snowMap.Tilesets[0].TileWidth / 2)* orthogonalX - (orthogonalY* (snowMap.Tilesets[0].TileWidth/2))
+                                    , originTileCoord.Y+((snowMap.Tilesets[0].TileHeight / 2) * orthogonalX) + (orthogonalY * (snowMap.Tilesets[0].TileHeight / 2)))
                                 , new Point(snowMap.Tilesets[0].TileWidth, snowMap.Tilesets[0].TileHeight))
                                 //sourceRectangle :
                                 , new Rectangle((snowMap.Layers[i].Tiles[y].Gid - 1) % snowMap.Tilesets[0].Columns.Value * snowMap.Tilesets[0].TileWidth
