@@ -54,13 +54,13 @@ namespace IsoMap.Engine
         public TileStyle getTileStyle(TmxTileset tileset)
         {
             TileStyle result;
-            if (tileset.TileHeight == tileset.TileWidth)
+            if (tileset.TileHeight == tileset.TileWidth/2)
             {
-                result = TileStyle.BLOCK;
+                result = TileStyle.FLAT;
             }
             else
             {
-                result = TileStyle.FLAT;
+                result = TileStyle.BLOCK;
             }
             return result;
         }
