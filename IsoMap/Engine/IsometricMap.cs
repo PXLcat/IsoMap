@@ -45,6 +45,34 @@ namespace IsoMap.Engine
         {
 
         }
+
+        public enum TileStyle
+        {
+            FLAT,
+            BLOCK
+        }
+        public TileStyle getTileStyle(TmxTileset tileset)
+        {
+            TileStyle result;
+            if (tileset.TileHeight == tileset.TileWidth)
+            {
+                result = TileStyle.BLOCK;
+            }
+            else
+            {
+                result = TileStyle.FLAT;
+            }
+            return result;
+        }
+
+        public Point CarthesianToIsometric(Point coordToTranslate, Point origin)
+        {
+            Point upLeftCorner = new Point(origin.X + coordToTranslate.X * (snowMap.TileWidth / 2) - coordToTranslate.Y * (snowMap.TileWidth / 2)
+                , origin.Y + coordToTranslate.Y*(snowMap.TileHeight/2) + coordToTranslate.X*(snowMap.TileHeight/2));
+            Point downLeftCorner = upLeftCorner + new Point(0, snowMap.TileHeight);
+            return downLeftCorner;
+        }
+
         public void Draw(SpriteBatch spriteBatch)
         {
             for (int i = 0; i < snowMap.Layers.Count; i++)// Pour chaque layer
@@ -62,12 +90,12 @@ namespace IsoMap.Engine
                         {
                             spriteBatch.Draw(tilesetsTextures.Values.ElementAt(0)
                                 //destinationRectangle :
-                                , new Rectangle(new Point(originTileCoord.X + (snowMap.Tilesets[0].TileWidth / 2)* orthogonalX - (orthogonalY* (snowMap.Tilesets[0].TileWidth/2))
-                                    , originTileCoord.Y+((snowMap.Tilesets[0].TileHeight / 2) * orthogonalX) + (orthogonalY * (snowMap.Tilesets[0].TileHeight / 2)))
+                                , new Rectangle(new Point(originTileCoord.X + (snowMap.Tilesets[0].TileWidth / 2) * orthogonalX - (orthogonalY * (snowMap.Tilesets[0].TileWidth / 2))
+                                    , originTileCoord.Y + ((snowMap.Tilesets[0].TileHeight / 2) * orthogonalX) + (orthogonalY * (snowMap.Tilesets[0].TileHeight / 2)))
                                 , new Point(snowMap.Tilesets[0].TileWidth, snowMap.Tilesets[0].TileHeight))
                                 //sourceRectangle :
                                 , new Rectangle((snowMap.Layers[i].Tiles[y].Gid - 1) % snowMap.Tilesets[0].Columns.Value * snowMap.Tilesets[0].TileWidth
-                                , (int)Math.Floor((double)(snowMap.Layers[i].Tiles[y].Gid/ snowMap.Tilesets[0].Columns.Value) * snowMap.Tilesets[0].TileHeight)
+                                , (int)Math.Floor((double)(snowMap.Layers[i].Tiles[y].Gid / snowMap.Tilesets[0].Columns.Value) * snowMap.Tilesets[0].TileHeight)
                                 , snowMap.Tilesets[0].TileWidth
                                 , snowMap.Tilesets[0].TileHeight)
                                 , Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0f);
@@ -96,7 +124,7 @@ namespace IsoMap.Engine
                     {
                         orthogonalX = 0;
                         orthogonalY++;
-                        if (orthogonalY>snowMap.Height)
+                        if (orthogonalY > snowMap.Height)
                         {
                             Debug.Write("fin de la map");
                         }
