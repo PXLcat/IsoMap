@@ -90,33 +90,39 @@ namespace IsoMap.Engine
                         {
                             spriteBatch.Draw(tilesetsTextures.Values.ElementAt(0)
                                 //destinationRectangle :
-                                , new Rectangle(new Point(originTileCoord.X + (snowMap.Tilesets[0].TileWidth / 2) * orthogonalX - (orthogonalY * (snowMap.Tilesets[0].TileWidth / 2))
-                                    , originTileCoord.Y + ((snowMap.Tilesets[0].TileHeight / 2) * orthogonalX) + (orthogonalY * (snowMap.Tilesets[0].TileHeight / 2)))
-                                , new Point(snowMap.Tilesets[0].TileWidth, snowMap.Tilesets[0].TileHeight))
+                                , new Rectangle(CarthesianToIsometric(new Point(orthogonalX, orthogonalY),originTileCoord)
+                                , tileSize)
                                 //sourceRectangle :
-                                , new Rectangle((snowMap.Layers[i].Tiles[y].Gid - 1) % snowMap.Tilesets[0].Columns.Value * snowMap.Tilesets[0].TileWidth
-                                , (int)Math.Floor((double)(snowMap.Layers[i].Tiles[y].Gid / snowMap.Tilesets[0].Columns.Value) * snowMap.Tilesets[0].TileHeight)
-                                , snowMap.Tilesets[0].TileWidth
-                                , snowMap.Tilesets[0].TileHeight)
-                                , Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0f);
+                                , new Rectangle(new Point((snowMap.Layers[i].Tiles[y].Gid - 1) % snowMap.Tilesets[0].Columns.Value * snowMap.Tilesets[0].TileWidth
+                                , (int)Math.Floor((double)(snowMap.Layers[i].Tiles[y].Gid / snowMap.Tilesets[0].Columns.Value) * snowMap.Tilesets[0].TileHeight))
+                                , tileSize)
+                                , Color.White, 0f
+                                //origin :
+                                , new Vector2(0, snowMap.Tilesets[0].TileHeight) //dessin à l'origine bas gauche, peu importe la hauteur
+                                , SpriteEffects.None, 0f);
                         }
                         // else if (tile.Gid < snowMap.Tilesets[x].FirstGid) si il y a d'autres layers
                         else
                         { //Attention Tileset "blocs"
                             spriteBatch.Draw(tilesetsTextures.Values.ElementAt(1) //attention redondance, y'a que cet arg qui change
-                                                                                  //destinationRectangle :
-                                , new Rectangle(new Point(originTileCoord.X + (snowMap.Tilesets[1].TileWidth / 2) * orthogonalX - (orthogonalY * (snowMap.Tilesets[1].TileWidth / 2))
-                                    , originTileCoord.Y + ((snowMap.Tilesets[1].TileHeight / 2) * orthogonalX) + (orthogonalY * (snowMap.Tilesets[1].TileHeight / 2)))
-                                , new Point(snowMap.Tilesets[1].TileWidth, snowMap.Tilesets[1].TileHeight))
+                                //destinationRectangle :
+                                , new Rectangle(CarthesianToIsometric(new Point(orthogonalX-1, orthogonalY-1), originTileCoord) //PK ça marche avec -1 aux coord??
+                                , blockSize)
                                 //sourceRectangle :
-                                /*
-                                , new Rectangle((snowMap.Layers[i].Tiles[y].Gid- snowMap.Tilesets[1].FirstGid - 1) % snowMap.Tilesets[1].Columns.Value * snowMap.Tilesets[1].TileWidth
-                                , (int)Math.Floor((double)(snowMap.Layers[i].Tiles[y].Gid - snowMap.Tilesets[1].FirstGid / snowMap.Tilesets[0].Columns.Value) * snowMap.Tilesets[1].TileHeight)
+                                
+                                , new Rectangle(((snowMap.Layers[i].Tiles[y].Gid- snowMap.Tilesets[1].FirstGid) % snowMap.Tilesets[1].Columns.Value) * snowMap.Tilesets[1].TileWidth
+                                , (int)Math.Floor((double)((snowMap.Layers[i].Tiles[y].Gid - snowMap.Tilesets[1].FirstGid) / snowMap.Tilesets[1].Columns.Value) * snowMap.Tilesets[1].TileHeight) //Attention "Tilesets[1]"
+
                                 , snowMap.Tilesets[1].TileWidth
                                 , snowMap.Tilesets[1].TileHeight)
-                                */
+
+                                /*
                                 , new Rectangle(226, 0, 32, 32)
-                                , Color.White, 0f, Vector2.Zero, SpriteEffects.None, 1f);
+                                */
+                                , Color.White, 0f
+                                //origin :
+                                , new Vector2(0, snowMap.Tilesets[0].TileHeight) //dessin à l'origine bas gauche, peu importe la hauteur
+                                , SpriteEffects.None, 1f);
                         }
                     }
                     orthogonalX++;
