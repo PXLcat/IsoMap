@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
@@ -21,6 +22,9 @@ namespace IsoMap.Engine
 
         protected List<InputType> playerInputs;
 
+        public int zoom = 1;
+        public RenderTarget2D renderTarget;
+
         //____Affichage de la position de la souris____
         private MouseState mouse;
         public String mouseText;
@@ -40,6 +44,8 @@ namespace IsoMap.Engine
 
         public virtual void Load()
         {
+            renderTarget = new RenderTarget2D(mainGame.GraphicsDevice, 800/zoom, 600/zoom);//pas sûr de la taille à mettre (doublon de dans le Draw() )
+
             //windowWidth = mainGame.GraphicsDevice.DisplayMode.Width; //Attention, c'est la taille de l'écran, pas de la fenêtre
             //windowHeight = mainGame.GraphicsDevice.DisplayMode.Height;
 
@@ -83,8 +89,8 @@ namespace IsoMap.Engine
 
 #if DEBUG
             mouse = Mouse.GetState();
-            mouseText = mouse.Position.X/*/2*/ + ":" + mouse.Position.Y/*/2*/;//attention /2 dépendant
-            mouseTextPos = new Vector2(windowWidth/*/2*/ - Fonts.Instance.kenPixel16.MeasureString(mouseText).X, 0); //(attention, le /2 est trop dépendant)
+            mouseText = mouse.Position.X/zoom + ":" + mouse.Position.Y/zoom;
+            mouseTextPos = new Vector2(windowWidth/zoom - Fonts.Instance.kenPixel16.MeasureString(mouseText).X, 0);
 #endif
 
         }
