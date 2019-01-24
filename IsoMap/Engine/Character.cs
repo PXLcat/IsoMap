@@ -14,6 +14,8 @@ namespace IsoMap.Engine
         public int maxHP;
         public Status characterStatus;
         public Texture2D avatar; //shit faut que le cadre soit à part
+
+
         
 
         public Character(string name, int maxHP)

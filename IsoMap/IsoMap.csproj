@@ -41,13 +41,19 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="CommonImagery\AnimatedSprite.cs" />
+    <Compile Include="CommonImagery\DrawableImage.cs" />
     <Compile Include="CommonImagery\Fonts.cs" />
+    <Compile Include="CommonImagery\ICollidable.cs" />
+    <Compile Include="CommonImagery\IDrawable.cs" />
     <Compile Include="Engine\Character.cs" />
+    <Compile Include="Engine\IsoMapSprite.cs" />
     <Compile Include="Engine\IsometricMap.cs" />
     <Compile Include="Engine\Factory.cs" />
     <Compile Include="Engine\Gamestate.cs" />
     <Compile Include="Engine\Input.cs" />
     <Compile Include="Engine\MapScene.cs" />
+    <Compile Include="Engine\Player.cs" />
     <Compile Include="Engine\Scene.cs" />
     <Compile Include="Engine\Tools.cs" />
     <Compile Include="MainGame.cs" />

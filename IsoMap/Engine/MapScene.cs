@@ -30,6 +30,13 @@ namespace IsoMap.Engine
             snowMap.Load(mainGame.Content);
 
             zoom = 2;
+
+
+            //Player : 
+
+            Player.Instance.Load(mainGame);
+            //TODO appel à une méthode factory qui créera un élément avec animated sprite et coord déplaçables
+
             base.Load();
                        
         }

@@ -40,6 +40,8 @@ namespace IsoMap.Engine
             originBlockCoord = new Point(snowMap.Tilesets[0].TileWidth * (snowMap.Width / 2) - snowMap.Tilesets[0].TileWidth / 2,
                 -snowMap.Tilesets[0].TileHeight); //attention tout se base sur les dimensions du premier tileset
 
+
+
         }
         public void Update()
         {
