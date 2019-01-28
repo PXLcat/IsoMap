@@ -14,9 +14,13 @@ namespace IsoMap.Engine
         public int maxHP;
         public Status characterStatus;
         public Texture2D avatar; //shit faut que le cadre soit à part
+        public IsoMapRepresentation mapRepresentation;
 
 
-        
+        public Character()
+        {
+
+        }
 
         public Character(string name, int maxHP)
         {
@@ -32,6 +36,10 @@ namespace IsoMap.Engine
             POISONED,
             PARALYSED,
             KO
+        }
+
+        public void Update() {
+            //mapRepresentation.CurrentPosition = 
         }
     }
 }

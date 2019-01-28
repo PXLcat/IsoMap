@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Xna.Framework;
 
 namespace IsoMap.Engine
 {
@@ -36,6 +37,16 @@ namespace IsoMap.Engine
         {
         }
 
+        public void LoadPlayer()
+        {
+            Character monsieurBloc = new Character();
+            monsieurBloc.mapRepresentation = new IsoMapRepresentation();
+            monsieurBloc.mapRepresentation.idleMapSprite = new AnimatedSprite(mG.Content.Load<Texture2D>("vertical_object"), new Vector2(200, 200), 1); //TODO remplacer plus tard par une collection de sprites (voir un peu  la version des utopiales)
+            Player.Instance.currentCharacter = monsieurBloc;
+        }
+
+
+
         public List<Character> GetCharacters()
         {
             List<Character> charactersList = new List<Character>();
@@ -52,6 +63,7 @@ namespace IsoMap.Engine
         public void Load() {
             Fonts.Instance.Load(mG);
         }
+        
     }
 
 }

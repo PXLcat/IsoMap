@@ -35,6 +35,7 @@ namespace IsoMap.Engine
             //Player : 
 
             Player.Instance.Load(mainGame);
+            Factory.Instance.LoadPlayer();
             //TODO appel à une méthode factory qui créera un élément avec animated sprite et coord déplaçables
 
             base.Load();
@@ -68,6 +69,7 @@ namespace IsoMap.Engine
             Tools.DrawTiled(mainGame.spriteBatch, isometricGrid, 13, 19, Vector2.Zero);
 
             snowMap.Draw(mainGame.spriteBatch);
+            Player.Instance.currentCharacter.mapRepresentation.Draw(mainGame.spriteBatch);
 
             base.Draw(gameTime);
 
