@@ -56,12 +56,12 @@ namespace IsoMap.Engine
             KeyboardState newKbState = Keyboard.GetState();
             if (newKbState.IsKeyDown(Keys.Up)) //TODO mettre left et right sur un pied d'égalité
             {
-                inputs.Add(InputType.LEFT);
+                inputs.Add(InputType.UP);
                 Debug.Write("input up");
             }
             if (newKbState.IsKeyDown(Keys.Down))
             {
-                inputs.Add(InputType.RIGHT);
+                inputs.Add(InputType.DOWN);
                 Debug.Write("input down");
             }
             if (newKbState.IsKeyDown(Keys.Left)) //TODO mettre left et right sur un pied d'égalité
