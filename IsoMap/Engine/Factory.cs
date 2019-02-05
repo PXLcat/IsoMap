@@ -41,29 +41,43 @@ namespace IsoMap.Engine
 
         public void LoadPlayer()
         {
+            JsonSerializerSettings settings = new JsonSerializerSettings
+            {
+                NullValueHandling = NullValueHandling.Ignore, //attention dino danger
+                MissingMemberHandling = MissingMemberHandling.Ignore
+            };
+
             StreamReader sr = new StreamReader("./Content/charactersList.json");
             String jsonFile = sr.ReadToEnd();
-            CharactersListDTO characterList = JsonConvert.DeserializeObject<CharactersListDTO>(jsonFile);
+            CharactersListDTO characterList = JsonConvert.DeserializeObject<CharactersListDTO>(jsonFile, settings);
 
-            Character monsieurBloc = new Character();
-            monsieurBloc.mapRepresentation = new IsoMapRepresentation();
-            monsieurBloc.mapRepresentation.idleMapSprite = new AnimatedSprite(mG.Content.Load<Texture2D>("vertical_object"), new Vector2(200, 200), 1); //TODO remplacer plus tard par une collection de sprites (voir un peu  la version des utopiales)
-            Player.Instance.currentCharacter = monsieurBloc;
+            JsonToPlayerCharacters(characterList);
+
+            //monsieurBloc.mapRepresentation.idleMapSprite = new AnimatedSprite(mG.Content.Load<Texture2D>("vertical_object"), new Vector2(200, 200), 1); //TODO remplacer plus tard par une collection de sprites (voir un peu  la version des utopiales)
+            //Player.Instance.currentCharacter = monsieurBloc;
         }
 
-
-
-        public List<Character> GetCharacters()
+        private void JsonToPlayerCharacters(CharactersListDTO characterList)
         {
-            List<Character> charactersList = new List<Character>(); //externaliser
-            //charactersList.Add((new Character("Bidule", 20)));
-            //charactersList[0].avatar = mG.Content.Load<Texture2D>("ciale5050cadre");
-            //charactersList.Add((new Character("Truc", 30)));
-            //charactersList[1].avatar = mG.Content.Load<Texture2D>("machin2_5050cadre");
-            //charactersList[1].characterStatus = Character.Status.PARALYSED;
-            //charactersList.Add((new Character("Chouette", 30)));
-            //charactersList[2].avatar = mG.Content.Load<Texture2D>("machin2_5050cadre");
-            return charactersList;
+            foreach (CharacterDTO characterDTO in characterList.Characters)
+            {
+                Character character = new Character
+                {
+                    name = characterDTO.Name,
+                    maxHP = characterDTO.Hp,
+                    mapRepresentation = new MapRepresentation
+                    {
+                        idle = new AnimatedSprite(mG.Content.Load<Texture2D>(characterDTO.MapRepresentationDTO.Idle.ImgFile),
+                        Vector2.Zero, //voir ce qu'on fout de cette positiondans le constructeur pas focément utile
+                        characterDTO.MapRepresentationDTO.Idle.Columns, characterDTO.MapRepresentationDTO.Idle.FrameSpeed)
+                    }
+                };
+
+
+                Player.Instance.charactersList.Add(character);
+            }
+
+
         }
 
         public void Load() {

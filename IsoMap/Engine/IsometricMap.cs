@@ -53,7 +53,7 @@ namespace IsoMap.Engine
             FLAT,
             BLOCK
         }
-        public TileStyle getTileStyle(TmxTileset tileset)
+        public TileStyle GetTileStyle(TmxTileset tileset)
         {
             TileStyle result;
             if (tileset.TileHeight == tileset.TileWidth/2)

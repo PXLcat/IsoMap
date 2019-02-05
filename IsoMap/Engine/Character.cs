@@ -14,7 +14,10 @@ namespace IsoMap.Engine
         public int maxHP;
         public Status characterStatus;
         public Texture2D avatar; //shit faut que le cadre soit à part
-        public IsoMapRepresentation mapRepresentation;
+        public MenuRepresentation menuRepresentation;
+        public SideRepresentation sideRepresentation;
+        public MapRepresentation mapRepresentation;
+        
 
 
         public Character()
@@ -22,7 +25,7 @@ namespace IsoMap.Engine
 
         }
 
-        public Character(string name, int maxHP)
+        public Character(string name, int maxHP) //utile à terme si c'est la Factory qui crée?
         {
             this.name = name;
             this.maxHP = maxHP;
