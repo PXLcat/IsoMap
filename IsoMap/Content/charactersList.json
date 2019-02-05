@@ -7,7 +7,7 @@
     },
     "sideRepresentation": {
       "idle": {
-        "imgFile": "test",
+        "imgFile": "",
         "columns": "3",
         "framespeed": ""
       },

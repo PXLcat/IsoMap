@@ -14,9 +14,9 @@ namespace IsoMap.Engine
     {
         public String Name { get; set; }
         public int Hp { get; set; }
-        public MenuRepresentationDTO MenuRepresentationDTO { get; set; }
-        public SideRepresentationDTO SideRepresentationDTO { get; set; }
-        public MapRepresentationDTO MapRepresentationDTO { get; set; }
+        public MenuRepresentationDTO MenuRepresentation { get; set; } //c'est important que ça ait le même nom que l'attribut json, mais c'est pas case sensitive
+        public SideRepresentationDTO SideRepresentation { get; set; }
+        public MapRepresentationDTO MapRepresentation { get; set; }
 
     }
     public class MenuRepresentationDTO
