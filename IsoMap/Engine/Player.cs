@@ -9,6 +9,7 @@ namespace IsoMap.Engine
     public class Player
     {
         private static Player instance;
+        public List<Character> charactersList;
         public Character currentCharacter;
 
         public static Player Instance
@@ -28,11 +29,13 @@ namespace IsoMap.Engine
         public void Load(MainGame mG)
         {
             Factory factory = Factory.Instance;
- 
-        }
-        public void LoadCharacter() {
+            //charactersList = factory.GetCharacters();
+            //this.currentCharacter = charactersList[0];
+            factory.LoadPlayer();
+
 
         }
+
 
     }
 

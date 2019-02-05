@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
+using Newtonsoft.Json;
+using System.IO;
 
 namespace IsoMap.Engine
 {
@@ -39,6 +41,10 @@ namespace IsoMap.Engine
 
         public void LoadPlayer()
         {
+            StreamReader sr = new StreamReader("./Content/charactersList.json");
+            String jsonFile = sr.ReadToEnd();
+            CharactersListDTO characterList = JsonConvert.DeserializeObject<CharactersListDTO>(jsonFile);
+
             Character monsieurBloc = new Character();
             monsieurBloc.mapRepresentation = new IsoMapRepresentation();
             monsieurBloc.mapRepresentation.idleMapSprite = new AnimatedSprite(mG.Content.Load<Texture2D>("vertical_object"), new Vector2(200, 200), 1); //TODO remplacer plus tard par une collection de sprites (voir un peu  la version des utopiales)
@@ -49,14 +55,14 @@ namespace IsoMap.Engine
 
         public List<Character> GetCharacters()
         {
-            List<Character> charactersList = new List<Character>();
-            charactersList.Add((new Character("Bidule", 20)));
-            charactersList[0].avatar = mG.Content.Load<Texture2D>("ciale5050cadre");
-            charactersList.Add((new Character("Truc", 30)));
-            charactersList[1].avatar = mG.Content.Load<Texture2D>("machin2_5050cadre");
-            charactersList[1].characterStatus = Character.Status.PARALYSED;
-            charactersList.Add((new Character("Chouette", 30)));
-            charactersList[2].avatar = mG.Content.Load<Texture2D>("machin2_5050cadre");
+            List<Character> charactersList = new List<Character>(); //externaliser
+            //charactersList.Add((new Character("Bidule", 20)));
+            //charactersList[0].avatar = mG.Content.Load<Texture2D>("ciale5050cadre");
+            //charactersList.Add((new Character("Truc", 30)));
+            //charactersList[1].avatar = mG.Content.Load<Texture2D>("machin2_5050cadre");
+            //charactersList[1].characterStatus = Character.Status.PARALYSED;
+            //charactersList.Add((new Character("Chouette", 30)));
+            //charactersList[2].avatar = mG.Content.Load<Texture2D>("machin2_5050cadre");
             return charactersList;
         }
 
