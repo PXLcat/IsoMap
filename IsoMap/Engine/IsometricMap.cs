@@ -27,9 +27,11 @@ namespace IsoMap.Engine
         public void Load(ContentManager contentManager)
         {
             snowMap = new TmxMap("Content/testiso.tmx");
-            tilesetsTextures = new Dictionary<string, Texture2D>();
-            tilesetsTextures.Add("grassTileset", contentManager.Load<Texture2D>(snowMap.Tilesets[0].Name));//se référer à l'ordre dans le xml
-            tilesetsTextures.Add("decorNeigeTileset", contentManager.Load<Texture2D>(snowMap.Tilesets[1].Name));//TODO générer par Factory
+            tilesetsTextures = new Dictionary<string, Texture2D>
+            {
+                { "grassTileset", contentManager.Load<Texture2D>(snowMap.Tilesets[0].Name) },//se référer à l'ordre dans le xml
+                { "decorNeigeTileset", contentManager.Load<Texture2D>(snowMap.Tilesets[1].Name) }//TODO générer par Factory
+            };
 
             tileOrBlockWidth = snowMap.Tilesets[0].TileWidth;
             tileSize = new Point(snowMap.Tilesets[0].TileWidth, snowMap.Tilesets[0].TileHeight);

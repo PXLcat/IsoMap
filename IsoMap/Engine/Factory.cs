@@ -57,20 +57,56 @@ namespace IsoMap.Engine
             //Player.Instance.currentCharacter = monsieurBloc;
         }
 
-        private void JsonToPlayerCharacters(CharactersListDTO characterList)
+        private void JsonToPlayerCharacters(CharactersListDTO characterList) //TODO: attention à la possibilité de champs vides. Faire des vérifs pour
         {
+            Player.Instance.charactersList = new List<Character>();
+
             foreach (CharacterDTO characterDTO in characterList.Characters)
             {
                 Character character = new Character
                 {
                     name = characterDTO.Name,
                     maxHP = characterDTO.Hp,
-                    mapRepresentation = new MapRepresentation
+                    menuRepresentation = characterDTO.MenuRepresentationDTO==null? null: //c'est chiant de faire des ternaires, c'est obligé dans une classe imbriquée?
+                    new MenuRepresentation
                     {
-                        idle = new AnimatedSprite(mG.Content.Load<Texture2D>(characterDTO.MapRepresentationDTO.Idle.ImgFile),
-                        Vector2.Zero, //voir ce qu'on fout de cette positiondans le constructeur pas focément utile
-                        characterDTO.MapRepresentationDTO.Idle.Columns, characterDTO.MapRepresentationDTO.Idle.FrameSpeed)
+                        avatar5050 = String.IsNullOrEmpty(characterDTO.MenuRepresentationDTO.Avatar5050)? null :
+                        mG.Content.Load<Texture2D>(characterDTO.MenuRepresentationDTO.Avatar5050)
+                    },
+                    sideRepresentation = characterDTO.SideRepresentationDTO == null ? null :
+                    new SideRepresentation
+                    {
+                        idle = String.IsNullOrEmpty(characterDTO.SideRepresentationDTO.Idle.ImgFile) ? null :
+                        new AnimatedSprite(mG.Content.Load<Texture2D>(characterDTO.SideRepresentationDTO.Idle.ImgFile),
+                        Vector2.Zero, //voir ce qu'on fout de cette position dans le constructeur pas focément utile
+                        characterDTO.MapRepresentationDTO.Idle.Columns, characterDTO.SideRepresentationDTO.Idle.FrameSpeed),
+                        run = String.IsNullOrEmpty(characterDTO.SideRepresentationDTO.Run.ImgFile) ? null :
+                        new AnimatedSprite(mG.Content.Load<Texture2D>(characterDTO.SideRepresentationDTO.Run.ImgFile),
+                        Vector2.Zero,
+                        characterDTO.MapRepresentationDTO.Idle.Columns, characterDTO.SideRepresentationDTO.Run.FrameSpeed),
+                        jump = String.IsNullOrEmpty(characterDTO.SideRepresentationDTO.Jump.ImgFile) ? null :
+                        new AnimatedSprite(mG.Content.Load<Texture2D>(characterDTO.SideRepresentationDTO.Jump.ImgFile),
+                        Vector2.Zero,
+                        characterDTO.MapRepresentationDTO.Idle.Columns, characterDTO.SideRepresentationDTO.Jump.FrameSpeed),
+                        fall = String.IsNullOrEmpty(characterDTO.SideRepresentationDTO.Fall.ImgFile) ? null :
+                        new AnimatedSprite(mG.Content.Load<Texture2D>(characterDTO.SideRepresentationDTO.Fall.ImgFile),
+                        Vector2.Zero,
+                        characterDTO.MapRepresentationDTO.Idle.Columns, characterDTO.SideRepresentationDTO.Fall.FrameSpeed),
+
+                    },
+                    mapRepresentation = characterDTO.MapRepresentationDTO == null ? null :
+                    new MapRepresentation
+                    {
+                        idle = String.IsNullOrEmpty(characterDTO.MapRepresentationDTO.Idle.ImgFile) ? null :
+                        new AnimatedSprite(mG.Content.Load<Texture2D>(characterDTO.MapRepresentationDTO.Idle.ImgFile),
+                        Vector2.Zero,
+                        characterDTO.MapRepresentationDTO.Idle.Columns, characterDTO.MapRepresentationDTO.Idle.FrameSpeed),
+                        run = String.IsNullOrEmpty(characterDTO.MapRepresentationDTO.Run.ImgFile) ? null :
+                        new AnimatedSprite(mG.Content.Load<Texture2D>(characterDTO.MapRepresentationDTO.Run.ImgFile),
+                        Vector2.Zero,
+                        characterDTO.MapRepresentationDTO.Run.Columns, characterDTO.MapRepresentationDTO.Run.FrameSpeed),
                     }
+
                 };
 
 

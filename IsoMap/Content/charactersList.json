@@ -3,12 +3,12 @@
     "name": "ciale",
     "hp": "",
     "menuRepresentation": {
-      "avatar5050": ""
+      "avatar5050": "Images/ciale5050cadre"
     },
     "sideRepresentation": {
       "idle": {
-        "imgFile": "",
-        "columns": "",
+        "imgFile": "test",
+        "columns": "3",
         "framespeed": ""
       },
       "run": {
