@@ -55,10 +55,10 @@ namespace IsoMap.Engine
         /// <param name="currentPosition"></param>
         /// <param name="columns">Nombre d'images du spritesheet</param>
         /// <param name="framespeed">La vitesse (en nombre d'updates) à laquelle on va passer d'une frame à une autre</param>
-        public AnimatedSprite(Texture2D texture, Vector2 currentPosition, int columns, int framespeed = 6) : base(texture, currentPosition) 
+        public AnimatedSprite(Texture2D texture, Vector2 currentPosition, int columns, int framespeed) : base(texture, currentPosition) 
         {
             Columns = columns;
-            FrameSpeed = framespeed;
+            FrameSpeed = framespeed; //avec la lecture Json, le framespeed est de base mis à 0, donc on ne peut plus utiliser l'argument optionnel
 
             CurrentFrame = 0;
             compteurFrame = 0;

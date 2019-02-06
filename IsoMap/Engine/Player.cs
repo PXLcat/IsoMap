@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -30,9 +31,10 @@ namespace IsoMap.Engine
         {
             Factory factory = Factory.Instance;
             //charactersList = factory.GetCharacters();
-            //this.currentCharacter = charactersList[0];
+            
             factory.LoadPlayer();
-
+            this.currentCharacter = charactersList[0];
+            currentCharacter.mapRepresentation.CurrentPosition = new Vector2(200, 200);
 
         }
 

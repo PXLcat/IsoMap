@@ -29,9 +29,9 @@
     },
     "mapRepresentation": {
       "idle": {
-        "imgFile": "",
-        "columns": "",
-        "framespeed": ""
+        "imgFile": "vertical_object",
+        "columns": "1",
+        "framespeed": "6"
       },
       "run": {
         "imgFile": "",
