@@ -48,11 +48,11 @@ namespace IsoMap.Engine
             base.Unload();
         }
 
-        public override void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime, float deltaTime)
         {
-            base.Update(gameTime);
+            base.Update(gameTime, deltaTime);
             List<InputType> playerInputs = Input.DefineInputs(ref mainGame.gameState.oldKbState);
-            Player.Instance.currentCharacter.mapRepresentation.Update(playerInputs);
+            Player.Instance.currentCharacter.mapRepresentation.Update(playerInputs , deltaTime);
 
 
             snowMap.Update();

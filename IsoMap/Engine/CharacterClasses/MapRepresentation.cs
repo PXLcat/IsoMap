@@ -23,6 +23,7 @@ namespace IsoMap.Engine
         private Texture2D texture;
 
         public Vector2 Movement { get; set; }
+        private float deltaTime;
 
         public bool HorizontalFlip { get; set; }
 
@@ -45,16 +46,16 @@ namespace IsoMap.Engine
             
         }
 
-        public void Update(List<InputType> playerInputs) {
+        public void Update(List<InputType> playerInputs, float deltaTime) {
             Movement = Vector2.Zero;
+            this.deltaTime = deltaTime; //qu'est ce qui est le mieux entre stocker le dT ou le passer de méthode en méthode? 
             if (playerInputs.Count > 0)
             {
                 SortAndExecuteInput(playerInputs);
             }
             CurrentPosition += Movement;
             currentSprite.CurrentPosition = CurrentPosition;
-            //TODO ajouter currentSprite pour updater le bon
-            currentSprite.Update();
+            currentSprite.Update(deltaTime);
         }
 
         private void SortAndExecuteInput(List<InputType> inputs)
@@ -84,28 +85,28 @@ namespace IsoMap.Engine
 
         private void MoveDown()
         {
-            Movement += new Vector2(-4,2); //remplacer par vitesse de déplacement
+            Movement += new Vector2(-4 * deltaTime, 2 * deltaTime); //remplacer par vitesse de déplacement
             currentSprite = idle_front;
             HorizontalFlip = false;
         }
 
         private void MoveUp()
         {
-            Movement += new Vector2(4,-2);
+            Movement += new Vector2(4 * deltaTime, -2 * deltaTime);
             currentSprite = idle_back;
             HorizontalFlip = false;
         }
 
         private void MoveRight()
         {
-            Movement += new Vector2(4, 2);
+            Movement += new Vector2(4 * deltaTime, 2 * deltaTime);
             currentSprite = idle_front;
             HorizontalFlip = true;
         }
 
         private void MoveLeft()
         {
-            Movement += new Vector2(-4, -2);
+            Movement += new Vector2(-4 * deltaTime, -2 * deltaTime);
             currentSprite = idle_back;
             HorizontalFlip = true;
         }

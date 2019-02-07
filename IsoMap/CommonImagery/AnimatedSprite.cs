@@ -37,7 +37,7 @@ namespace IsoMap.Engine
         /// <summary>
         /// Le compteurFrame augmente de 1 à chaque Update. Lorsqu'il atteint la valeur du FrameSpeed, on passe à la frame (currentFrame) suivante.
         /// </summary>
-        private int compteurFrame;
+        private float compteurFrame;
 
         public int FrameWidth, FrameHeight;//TODO : public pour pouvoir gérer les collisions, mettre un accesseur?
 
@@ -71,9 +71,9 @@ namespace IsoMap.Engine
         /// <summary>
         /// Passage d'une frame à une autre selon FrameSpeed
         /// </summary>
-        public void Update()
+        public void Update(float deltaTime)
         {
-            compteurFrame++;
+            compteurFrame += 1 * deltaTime;//demander à Gaët si ça marche
             if (compteurFrame >= FrameSpeed)
             {
                 CurrentFrame++;
@@ -98,7 +98,7 @@ namespace IsoMap.Engine
             Vector2 drawPosition = new Vector2(CurrentPosition.X, CurrentPosition.Y + 8); //permet de donner l'impression que le sprite est ancré dans le sol et non en train de flotter au dessus
 
 
-            Debug.WriteLine("Current Frame: " + CurrentFrame + " nbColumns: " + Columns);
+            //Debug.WriteLine("Current Frame: " + CurrentFrame + " nbColumns: " + Columns);
             if (horizontalFlip)
                 sb.Draw(Texture, drawPosition, sourceRectangle, Color.White, 0, center, 1, SpriteEffects.FlipHorizontally, layerDepth);
             else

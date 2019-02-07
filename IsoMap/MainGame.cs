@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Diagnostics;
 
 namespace IsoMap
 {
@@ -66,12 +67,15 @@ namespace IsoMap
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            float deltaTime = (float)gameTime.ElapsedGameTime.TotalMilliseconds/10; //histoire d'avoir genre 1,6
+            //Debug.WriteLine("Delta time :"+ deltaTime);
+
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
             if (gameState.CurrentScene != null)
             {
-                gameState.CurrentScene.Update(gameTime);
+                gameState.CurrentScene.Update(gameTime, deltaTime);
             }
 
             base.Update(gameTime);

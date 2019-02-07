@@ -62,7 +62,7 @@ namespace IsoMap.Engine
             Debug.WriteLine("Unload " + this.GetType().Name);
         }
 
-        public virtual void Update(GameTime gameTime) {
+        public virtual void Update(GameTime gameTime, float deltaTime) {
 
             playerInputs = Input.DefineInputs(ref mainGame.gameState.oldMouseState, ref mainGame.gameState.oldKbState); 
 
