@@ -28,11 +28,16 @@
       }
     },
     "mapRepresentation": {
-      "idle": {
-        "imgFile": "vertical_object",
-        "columns": "1",
-        "framespeed": "6"
+      "idle_front": {
+        "imgFile": "Images/ciale_map_idle_front",
+        "columns": "2",
+        "framespeed": "15"
       },
+	  "idle_back": {
+          "imgFile": "Images/ciale_map_idle_back",
+          "columns": "2",
+          "framespeed": "15"
+        },
       "run": {
         "imgFile": "",
         "columns": "",
@@ -41,89 +46,97 @@
     }
     
   },
-  {
-    "name": "",
-    "hp": "",
-    "menuRepresentation": {
-      "avatar5050": ""
-    },
-    "sideRepresentation": {
-      "idle": {
-        "imgFile": "",
-        "columns": "",
-        "framespeed": ""
+{
+      "name": "",
+      "hp": "",
+      "menuRepresentation": {
+        "avatar5050": ""
       },
-      "run": {
-        "imgFile": "",
-        "columns": "",
-        "framespeed": ""
+      "sideRepresentation": {
+        "idle": {
+          "imgFile": "",
+          "columns": "",
+          "framespeed": ""
+        },
+        "run": {
+          "imgFile": "",
+          "columns": "",
+          "framespeed": ""
+        },
+        "jump": {
+          "imgFile": "",
+          "columns": "",
+          "framespeed": ""
+        },
+        "fall": {
+          "imgFile": "",
+          "columns": "",
+          "framespeed": ""
+        }
       },
-      "jump": {
-        "imgFile": "",
-        "columns": "",
-        "framespeed": ""
-      },
-      "fall": {
-        "imgFile": "",
-        "columns": "",
-        "framespeed": ""
+      "mapRepresentation": {
+        "idle_front": {
+          "imgFile": "",
+          "columns": "",
+          "framespeed": ""
+        },
+        "idle_back": {
+          "imgFile": "",
+          "columns": "",
+          "framespeed": ""
+        },
+        "run": {
+          "imgFile": "",
+          "columns": "",
+          "framespeed": ""
+        }
       }
     },
-    "mapRepresentation": {
-      "idle": {
-        "imgFile": "",
-        "columns": "",
-        "framespeed": ""
-      },
-      "run": {
-        "imgFile": "",
-        "columns": "",
-        "framespeed": ""
-      }
-    }
-    
-  },
     {
-    "name": "",
-    "hp": "",
-    "menuRepresentation": {
-      "avatar5050": ""
-    },
-    "sideRepresentation": {
-      "idle": {
-        "imgFile": "",
-        "columns": "",
-        "framespeed": ""
+      "name": "",
+      "hp": "",
+      "menuRepresentation": {
+        "avatar5050": ""
       },
-      "run": {
-        "imgFile": "",
-        "columns": "",
-        "framespeed": ""
+      "sideRepresentation": {
+        "idle": {
+          "imgFile": "",
+          "columns": "",
+          "framespeed": ""
+        },
+        "run": {
+          "imgFile": "",
+          "columns": "",
+          "framespeed": ""
+        },
+        "jump": {
+          "imgFile": "",
+          "columns": "",
+          "framespeed": ""
+        },
+        "fall": {
+          "imgFile": "",
+          "columns": "",
+          "framespeed": ""
+        }
       },
-      "jump": {
-        "imgFile": "",
-        "columns": "",
-        "framespeed": ""
-      },
-      "fall": {
-        "imgFile": "",
-        "columns": "",
-        "framespeed": ""
-      }
-    },
-    "mapRepresentation": {
-      "idle": {
-        "imgFile": "",
-        "columns": "",
-        "framespeed": ""
-      },
-      "run": {
-        "imgFile": "",
-        "columns": "",
-        "framespeed": ""
+      "mapRepresentation": {
+        "idle_front": {
+          "imgFile": "",
+          "columns": "",
+          "framespeed": ""
+        },
+        "idle_back": {
+          "imgFile": "",
+          "columns": "",
+          "framespeed": ""
+        },
+        "run": {
+          "imgFile": "",
+          "columns": "",
+          "framespeed": ""
+        }
       }
     }
-    
-  }
   ]
 }

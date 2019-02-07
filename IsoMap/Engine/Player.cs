@@ -37,6 +37,10 @@ namespace IsoMap.Engine
             currentCharacter.mapRepresentation.CurrentPosition = new Vector2(200, 200);
 
         }
+        public void Update()
+        {
+            currentCharacter.Update();
+        }
 
 
     }

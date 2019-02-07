@@ -11,7 +11,8 @@ namespace IsoMap.Engine
 {
     public class MapRepresentation : IDrawable, ICollidable
     {
-        public AnimatedSprite idle, run;
+        public AnimatedSprite idle_front, idle_back, run;
+        public AnimatedSprite currentSprite;
 
         public Rectangle HitBox => throw new NotImplementedException();
 
@@ -23,6 +24,8 @@ namespace IsoMap.Engine
 
         public Vector2 Movement { get; set; }
 
+        public bool HorizontalFlip { get; set; }
+
         public void OnCollision(ICollidable other)
         {
             throw new NotImplementedException();
@@ -31,10 +34,14 @@ namespace IsoMap.Engine
         {
 
         }
+        public void Load()
+        {
+            currentSprite = idle_front;
+        }
 
         public void Draw(SpriteBatch sb)
         {
-            idle.Draw(sb);
+            currentSprite.Draw(sb, HorizontalFlip);
             
         }
 
@@ -45,7 +52,9 @@ namespace IsoMap.Engine
                 SortAndExecuteInput(playerInputs);
             }
             CurrentPosition += Movement;
-            idle.CurrentPosition = CurrentPosition;
+            currentSprite.CurrentPosition = CurrentPosition;
+            //TODO ajouter currentSprite pour updater le bon
+            currentSprite.Update();
         }
 
         private void SortAndExecuteInput(List<InputType> inputs)
@@ -76,21 +85,29 @@ namespace IsoMap.Engine
         private void MoveDown()
         {
             Movement += new Vector2(-4,2); //remplacer par vitesse de déplacement
+            currentSprite = idle_front;
+            HorizontalFlip = false;
         }
 
         private void MoveUp()
         {
             Movement += new Vector2(4,-2);
+            currentSprite = idle_back;
+            HorizontalFlip = false;
         }
 
         private void MoveRight()
         {
             Movement += new Vector2(4, 2);
+            currentSprite = idle_front;
+            HorizontalFlip = true;
         }
 
         private void MoveLeft()
         {
             Movement += new Vector2(-4, -2);
+            currentSprite = idle_back;
+            HorizontalFlip = true;
         }
     }
 }

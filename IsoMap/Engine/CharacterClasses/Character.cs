@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -43,6 +44,9 @@ namespace IsoMap.Engine
 
         public void Update() {
             //mapRepresentation.CurrentPosition = 
+            Debug.Write("test");
+            //TODO ajouter un champ currentRepresentation au Gamestate pour savoir quelle représentation updater
+
         }
     }
 }

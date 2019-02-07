@@ -32,7 +32,8 @@ namespace IsoMap.Engine
     }
     public class MapRepresentationDTO
     {
-        public SpriteStateDTO Idle { get; set; }
+        public SpriteStateDTO Idle_front { get; set; }
+        public SpriteStateDTO Idle_back { get; set; }
         public SpriteStateDTO Run { get; set; }
     }
     public class SpriteStateDTO

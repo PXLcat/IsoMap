@@ -91,6 +91,8 @@ namespace IsoMap.Engine
         }
         public override void Draw(SpriteBatch sb, bool horizontalFlip = false)
         {
+
+
             Rectangle sourceRectangle = new Rectangle(CurrentFrame * FrameWidth, 0, FrameWidth, FrameHeight);
             int layerDepth = 0; //TODO attention à layer depth, à ajouter comme para plus tard
             Vector2 drawPosition = new Vector2(CurrentPosition.X, CurrentPosition.Y + 8); //permet de donner l'impression que le sprite est ancré dans le sol et non en train de flotter au dessus

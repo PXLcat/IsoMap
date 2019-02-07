@@ -97,10 +97,14 @@ namespace IsoMap.Engine
                     mapRepresentation = characterDTO.MapRepresentation == null ? null :
                     new MapRepresentation
                     {
-                        idle = String.IsNullOrEmpty(characterDTO.MapRepresentation.Idle.ImgFile) ? null :
-                        new AnimatedSprite(mG.Content.Load<Texture2D>(characterDTO.MapRepresentation.Idle.ImgFile),
+                        idle_front = String.IsNullOrEmpty(characterDTO.MapRepresentation.Idle_front.ImgFile) ? null :
+                        new AnimatedSprite(mG.Content.Load<Texture2D>(characterDTO.MapRepresentation.Idle_front.ImgFile),
                         Vector2.Zero,
-                        characterDTO.MapRepresentation.Idle.Columns, characterDTO.MapRepresentation.Idle.FrameSpeed),
+                        characterDTO.MapRepresentation.Idle_front.Columns, characterDTO.MapRepresentation.Idle_front.FrameSpeed),
+                        idle_back = String.IsNullOrEmpty(characterDTO.MapRepresentation.Idle_back.ImgFile) ? null :
+                        new AnimatedSprite(mG.Content.Load<Texture2D>(characterDTO.MapRepresentation.Idle_back.ImgFile),
+                        Vector2.Zero,
+                        characterDTO.MapRepresentation.Idle_back.Columns, characterDTO.MapRepresentation.Idle_back.FrameSpeed),
                         run = String.IsNullOrEmpty(characterDTO.MapRepresentation.Run.ImgFile) ? null :
                         new AnimatedSprite(mG.Content.Load<Texture2D>(characterDTO.MapRepresentation.Run.ImgFile),
                         Vector2.Zero,

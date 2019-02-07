@@ -36,6 +36,7 @@ namespace IsoMap.Engine
 
             Player.Instance.Load(mainGame);
             Factory.Instance.LoadPlayer();
+            Player.Instance.currentCharacter.mapRepresentation.Load();
             //TODO appel à une méthode factory qui créera un élément avec animated sprite et coord déplaçables
 
             base.Load();
@@ -65,7 +66,6 @@ namespace IsoMap.Engine
             mainGame.GraphicsDevice.DepthStencilState = new DepthStencilState() { DepthBufferEnable = true }; //G PA KONPRI
 
             // Draw the scene
-            //mainGame.GraphicsDevice.Clear(Color.CornflowerBlue); probablement pas utile?
             //__________________CONTENU DU DRAW "CLASSIQUE"_____________
 
             mainGame.spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null); //SamplerState.PointClamp => Permet de resize du pixel art sans blur
