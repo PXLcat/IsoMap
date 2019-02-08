@@ -49,6 +49,7 @@
     <Compile Include="Engine\CharacterClasses\Character.cs" />
     <Compile Include="Engine\CharacterClasses\CharactersListDTO.cs" />
     <Compile Include="Engine\CharacterClasses\MapRepresentation.cs" />
+    <Compile Include="Engine\IMapDrawable.cs" />
     <Compile Include="Engine\IsometricMap.cs" />
     <Compile Include="Engine\Factory.cs" />
     <Compile Include="Engine\Gamestate.cs" />
@@ -58,6 +59,8 @@
     <Compile Include="Engine\Player.cs" />
     <Compile Include="Engine\Scene.cs" />
     <Compile Include="Engine\CharacterClasses\SideRepresentation.cs" />
+    <Compile Include="Engine\Tiles\ModelTile.cs" />
+    <Compile Include="Engine\Tiles\TileGround.cs" />
     <Compile Include="Engine\Tools.cs" />
     <Compile Include="MainGame.cs" />
     <Compile Include="Program.cs" />
