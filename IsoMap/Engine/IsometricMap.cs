@@ -134,7 +134,7 @@ namespace IsoMap.Engine
                                     , new Point(snowMap.Tilesets[ts].TileWidth, snowMap.Tilesets[ts].TileHeight))
                                     //sourceRectangle :
                                     , new Rectangle((snowMap.Layers[i].Tiles[y].Gid - 1) % snowMap.Tilesets[ts].Columns.Value * snowMap.Tilesets[ts].TileWidth
-                                    , (int)Math.Floor((double)(snowMap.Layers[i].Tiles[y].Gid / snowMap.Tilesets[ts].Columns.Value) * snowMap.Tilesets[ts].TileHeight)
+                                    , (int)Math.Floor((double)((snowMap.Layers[i].Tiles[y].Gid- snowMap.Tilesets[ts].FirstGid) / snowMap.Tilesets[ts].Columns.Value) * snowMap.Tilesets[ts].TileHeight)
                                     , snowMap.Tilesets[ts].TileWidth
                                     , snowMap.Tilesets[ts].TileHeight)
                                     , Color.White, 0f
