@@ -71,9 +71,44 @@ namespace IsoMap.Engine
 
                 //TODO c'est ici qu'on doit réutiliser le code du draw pour initialiser les tiles
 
+                for (int y = 0; y < snowMap.Layers[i].Tiles.Count; y++) // Pour chaque tile
+                {
+                    if (snowMap.Layers[i].Tiles[y].Gid != 0) //si c'est pas du vide (Gid=0)
+                    {
+                        for (int ts = 0; ts < snowMap.Tilesets.Count; ts++)
+                        {
+                            if ((snowMap.Layers[i].Tiles[y].Gid >= snowMap.Tilesets[ts].FirstGid)
+                                && (snowMap.Layers[i].Tiles[y].Gid < snowMap.Tilesets[ts].FirstGid + snowMap.Tilesets[ts].TileCount))
+                            {
+                                Point xAndYPosition = CarthesianToIsometric(new Point(orthogonalX -
+                                        ((snowMap.Tilesets[ts].TileHeight == snowMap.Tilesets[ts].TileWidth) ? 1 : 0)
+                                        , orthogonalY -
+                                        ((snowMap.Tilesets[ts].TileHeight == snowMap.Tilesets[ts].TileWidth) ? 1 : 0))
+                                        , originTileCoord);
+
+                                mapElements.Add(CreateTile(ts, snowMap.Layers[i].Tiles[y].Gid,
+                                    xAndYPosition, layerZ, snowMap.Tilesets[ts].TileWidth, snowMap.Tilesets[ts].TileHeight));
+                            }
+                            //else ce Gid ne fait pas partie de ce tileset
+                        }
+
+                        orthogonalX++;
+                        if (orthogonalX >= snowMap.Width) //en théorie le = devrait suffire
+                        {
+                            orthogonalX = 0;
+                            orthogonalY++;
+                        } 
+                    }
+                }
+
             }
         }
 
+        public ModelTile CreateTile(int tilesheetNumber, int gid, Point xAndYPosition, int zPosition,
+            int width, int height)
+        {
+
+        }
 
         public void Update()
         {
@@ -109,62 +144,17 @@ namespace IsoMap.Engine
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            for (int i = 0; i < snowMap.Layers.Count; i++)// Pour chaque layer
-            {
-                int orthogonalX = 0;
-                int orthogonalY = 0;
 
-                //snowMap.Layers[i]
-                for (int y = 0; y < snowMap.Layers[i].Tiles.Count; y++) // Pour chaque tile
-                {
-                    if (snowMap.Layers[i].Tiles[y].Gid != 0)
-                    {
-                        for (int ts = 0; ts < snowMap.Tilesets.Count; ts++)
-                        {
-                            if ((snowMap.Layers[i].Tiles[y].Gid >= snowMap.Tilesets[ts].FirstGid)
-                                && (snowMap.Layers[i].Tiles[y].Gid < snowMap.Tilesets[ts].FirstGid + snowMap.Tilesets[ts].TileCount))
-                            {
-                                spriteBatch.Draw(tilesetsTextures.Values.ElementAt(ts)
-                                    //destinationRectangle :
-                                    , new Rectangle(CarthesianToIsometric(new Point(orthogonalX -
-                                    ((snowMap.Tilesets[ts].TileHeight == snowMap.Tilesets[ts].TileWidth) ? 1 : 0)
-                                    , orthogonalY -
-                                    ((snowMap.Tilesets[ts].TileHeight == snowMap.Tilesets[ts].TileWidth) ? 1 : 0))
-                                    , originTileCoord)
-                                    , new Point(snowMap.Tilesets[ts].TileWidth, snowMap.Tilesets[ts].TileHeight))
-                                    //sourceRectangle :
-                                    , new Rectangle((snowMap.Layers[i].Tiles[y].Gid - 1) % snowMap.Tilesets[ts].Columns.Value * snowMap.Tilesets[ts].TileWidth
-                                    , (int)Math.Floor((double)((snowMap.Layers[i].Tiles[y].Gid- snowMap.Tilesets[ts].FirstGid) / snowMap.Tilesets[ts].Columns.Value) * snowMap.Tilesets[ts].TileHeight)
-                                    , snowMap.Tilesets[ts].TileWidth
-                                    , snowMap.Tilesets[ts].TileHeight)
-                                    , Color.White, 0f
-                                    //origin :
-                                    , new Vector2(0, snowMap.Tilesets[0].TileHeight) //dessin à l'origine bas gauche, peu importe la hauteur
-                                    , SpriteEffects.None, 1f);
-                            }
-                            //else ce Gid ne fait pas partie de ce tileset
-
-                        }
-
-                    }
-                    orthogonalX++;
-                    if (orthogonalX >= snowMap.Width) //en théorie le = devrait suffire
-                    {
-                        orthogonalX = 0;
-                        orthogonalY++;
-                        if (orthogonalY > snowMap.Height)
-                        {
-                            Debug.Write("fin de la map");
-                        }
-
-                    }
-                }
-            }
 
         }
 
 
         public void Unload()
+        {
+
+        }
+
+        public enum TileType
         {
 
         }

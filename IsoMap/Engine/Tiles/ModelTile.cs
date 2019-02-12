@@ -36,6 +36,9 @@ namespace IsoMap.Engine.Tiles
         public void Draw(SpriteBatch sb)
         {
             //sb.Draw(Map.tileset, new Vector2(CurrentPosition.X, CurrentPosition.Y), sourceRectangle, Color.White);
+            //TODO ne pas oublier que le Draw doit se faire avec l'origine venant d'en bas!
+
+
         }
 
         public ModelTile(Vector2 basePosition, Rectangle sourceRectangle,int width, int height)
