@@ -11,11 +11,11 @@ namespace Engine.Tiles
 {
     public class TileGround : ModelTile
     {
-        public TileGround(Vector2 currentPosition, Rectangle sourceRectangle, int width, int height)
-            : base(currentPosition, sourceRectangle, width, height)
+        public TileGround(Vector2 currentPosition, Rectangle sourceRectangle, int width, int height, int zOrder, int tileSheetNb)
+            : base(currentPosition, sourceRectangle, width, height, zOrder, tileSheetNb)
         {
-            CurrentPosition = currentPosition;
-            traversablePourHumain = false;
+            
+            crossable = false;
         }
         public override void OnCollision(ICollidable other)
         {

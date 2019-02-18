@@ -59,7 +59,6 @@ namespace IsoMap.Engine
 
                 string layerNameZ = snowMap.Layers[i].Name.Substring(0, 2);
 
-
                 ///A "true" si le nom du layer commence bien par deux chifres. layerZ représente la hauteur en blocs du layer
                 bool correctLayerName = Int32.TryParse(layerNameZ, out int layerZ);
                 if (!correctLayerName)
@@ -69,7 +68,7 @@ namespace IsoMap.Engine
                 }
                 Debug.WriteLine(snowMap.Layers[i].Name + " " + layerZ);
 
-                //TODO c'est ici qu'on doit réutiliser le code du draw pour initialiser les tiles
+                //C'est ici qu'on initialise les tiles
 
                 for (int y = 0; y < snowMap.Layers[i].Tiles.Count; y++) // Pour chaque tile
                 {
@@ -92,12 +91,13 @@ namespace IsoMap.Engine
                             //else ce Gid ne fait pas partie de ce tileset
                         }
 
-                        orthogonalX++;
-                        if (orthogonalX >= snowMap.Width) //en théorie le = devrait suffire
-                        {
-                            orthogonalX = 0;
-                            orthogonalY++;
-                        } 
+                    }
+
+                    orthogonalX++;
+                    if (orthogonalX >= snowMap.Width) //en théorie le = devrait suffire
+                    {
+                        orthogonalX = 0;
+                        orthogonalY++;
                     }
                 }
 
@@ -107,7 +107,11 @@ namespace IsoMap.Engine
         public ModelTile CreateTile(int tilesheetNumber, int gid, Point xAndYPosition, int zPosition,
             int width, int height)
         {
-
+            Vector2 currentPosition = new Vector2(xAndYPosition.X, xAndYPosition.Y);//TODO choisir entre le point et vector2 pour pas avoir à faire ça
+            Rectangle sourceRectangle = new Rectangle((gid - 1) % snowMap.Tilesets[tilesheetNumber].Columns.Value * snowMap.Tilesets[tilesheetNumber].TileWidth
+                                    , (int)Math.Floor((double)((gid - snowMap.Tilesets[tilesheetNumber].FirstGid) / snowMap.Tilesets[tilesheetNumber].Columns.Value) * snowMap.Tilesets[tilesheetNumber].TileHeight)
+                                    , width,height);
+            return new TileGround(currentPosition, sourceRectangle, width, height, zPosition, tilesheetNumber); 
         }
 
         public void Update()
@@ -144,7 +148,13 @@ namespace IsoMap.Engine
 
         public void Draw(SpriteBatch spriteBatch)
         {
-
+            foreach (ModelTile tile in mapElements)
+            {
+                spriteBatch.Draw(tilesetsTextures.Values.ElementAt(tile.TileSheetNb),
+                    new Rectangle(tile.XPosition, tile.YPosition, tile.Width, tile.Height),
+                    tile.SourceRectangle, Color.White, 0f,
+                    new Vector2(0, tile.Height), SpriteEffects.None, 1f); //dessin avec origine en bas à gauche
+            }
 
         }
 

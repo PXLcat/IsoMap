@@ -12,8 +12,8 @@ namespace Engine.Tiles
 {
     abstract public class ModelTile : ICollidable, IMapDrawable
     {
-        private Rectangle sourceRectangle;
-        public bool traversablePourHumain = false;
+        public Rectangle SourceRectangle { get; set; }
+        public bool crossable = false;
 
 
         public Rectangle HitBox
@@ -28,6 +28,9 @@ namespace Engine.Tiles
         public int YPosition { get; set; }
         public int ZPosition { get; set; }
         public int ZOrder { get; set; }
+        public int TileSheetNb { get; set; }
+        public int Width { get; set; }
+        public int Height { get; set; }
 
         public virtual void OnCollision(ICollidable other)
         {
@@ -42,11 +45,18 @@ namespace Engine.Tiles
 
         }
 
-        public ModelTile(Vector2 basePosition, Rectangle sourceRectangle,int width, int height)
+        public ModelTile(Vector2 basePosition, Rectangle sourceRectangle,int width, int height, int zOrder, int tileSheetNb)
         {
             BasePosition = basePosition;
             CurrentPosition = BasePosition;
-            this.sourceRectangle = sourceRectangle;
+            this.XPosition = (int)basePosition.X;
+            this.YPosition = (int)basePosition.Y;
+            //TODO attention double entre basePosition et C & Y position
+            this.SourceRectangle = sourceRectangle;
+            this.ZOrder = zOrder;
+            this.TileSheetNb = tileSheetNb;
+            this.Width = width;
+            this.Height = height;
         }
 
         public void Update(int scrollX, int scrollY) {
