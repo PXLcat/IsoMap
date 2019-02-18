@@ -25,6 +25,8 @@ namespace Engine.CharacterClasses
         private Texture2D texture;
 
         public Vector2 Movement { get; set; }
+        public int Zorder { get; set; }
+
         private float deltaTime;
 
         public bool HorizontalFlip { get; set; }
@@ -62,15 +64,15 @@ namespace Engine.CharacterClasses
 
         private void SortAndExecuteInput(List<InputType> inputs)
         {
-            if (inputs.Contains(InputType.LEFT) && (inputs.Contains(InputType.RIGHT)))
+            if (inputs.Contains(InputType.LEFT) && inputs.Contains(InputType.RIGHT))
             {
                 //ResetPose();
             }
-            else if (inputs.Contains(InputType.LEFT) && (!inputs.Contains(InputType.RIGHT)))
+            else if (inputs.Contains(InputType.LEFT) && !inputs.Contains(InputType.RIGHT))
             {
                 MoveLeft();
             }
-            else if (inputs.Contains(InputType.RIGHT) && (!inputs.Contains(InputType.LEFT)))
+            else if (inputs.Contains(InputType.RIGHT) && !inputs.Contains(InputType.LEFT))
             {
                 MoveRight();
             }
