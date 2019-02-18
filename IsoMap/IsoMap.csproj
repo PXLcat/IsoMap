@@ -41,11 +41,11 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="CommonImagery\AnimatedSprite.cs" />
-    <Compile Include="CommonImagery\DrawableImage.cs" />
-    <Compile Include="CommonImagery\Fonts.cs" />
-    <Compile Include="CommonImagery\ICollidable.cs" />
-    <Compile Include="CommonImagery\IDrawable.cs" />
+    <Compile Include="Engine\CommonImagery\AnimatedSprite.cs" />
+    <Compile Include="Engine\CommonImagery\DrawableImage.cs" />
+    <Compile Include="Engine\CommonImagery\Fonts.cs" />
+    <Compile Include="Engine\CommonImagery\ICollidable.cs" />
+    <Compile Include="Engine\CommonImagery\IDrawable.cs" />
     <Compile Include="Engine\CharacterClasses\Character.cs" />
     <Compile Include="Engine\CharacterClasses\CharactersListDTO.cs" />
     <Compile Include="Engine\CharacterClasses\MapRepresentation.cs" />

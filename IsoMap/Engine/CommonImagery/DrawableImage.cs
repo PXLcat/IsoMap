@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace IsoMap.Engine
+namespace Engine.CommonImagery
 {
     public class DrawableImage //avec origine au millieu
     {

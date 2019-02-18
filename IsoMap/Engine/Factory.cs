@@ -7,8 +7,12 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Newtonsoft.Json;
 using System.IO;
+using IsoMap;
+using IsoMap.Engine;
+using Engine.CommonImagery;
+using Engine.CharacterClasses;
 
-namespace IsoMap.Engine
+namespace Engine
 {
     public class Factory //attention pas thread safe
     {

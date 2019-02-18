@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 
-namespace IsoMap.Engine
+namespace Engine.CharacterClasses
 {
     public class MenuRepresentation
     {

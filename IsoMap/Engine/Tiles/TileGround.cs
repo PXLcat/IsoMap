@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Engine.CommonImagery;
 using IsoMap.Engine;
 using Microsoft.Xna.Framework;
 
-namespace IsoMap.Engine.Tiles
+namespace Engine.Tiles
 {
     public class TileGround : ModelTile
     {

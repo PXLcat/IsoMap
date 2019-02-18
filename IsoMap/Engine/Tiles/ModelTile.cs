@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using IsoMap.Engine;
+using Engine.CommonImagery;
 
-namespace IsoMap.Engine.Tiles
+namespace Engine.Tiles
 {
     abstract public class ModelTile : ICollidable, IMapDrawable
     {

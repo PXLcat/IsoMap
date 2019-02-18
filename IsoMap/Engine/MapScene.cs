@@ -1,4 +1,7 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Engine;
+using IsoMap;
+using IsoMap.Engine;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -8,7 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TiledSharp;
 
-namespace IsoMap.Engine
+namespace Engine
 {
     public class MapScene : Scene
     {

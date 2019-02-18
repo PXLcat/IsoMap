@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using Engine.CommonImagery;
+using System.Collections.Generic;
 
-namespace IsoMap.Engine
+namespace Engine.CharacterClasses
 {
     public class SideRepresentation
     {

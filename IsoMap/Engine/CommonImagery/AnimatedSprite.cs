@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Diagnostics;
 
-namespace IsoMap.Engine
+namespace Engine.CommonImagery
 {
     public class AnimatedSprite : DrawableImage
     {

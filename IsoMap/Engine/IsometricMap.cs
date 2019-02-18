@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using TiledSharp;
 using Microsoft.Xna.Framework.Content;
 using System.Diagnostics;
-using IsoMap.Engine.Tiles;
+using Engine.Tiles;
 
 namespace IsoMap.Engine
 {
@@ -154,9 +154,6 @@ namespace IsoMap.Engine
 
         }
 
-        public enum TileType
-        {
 
-        }
     }
 }

@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Engine.CommonImagery;
+using IsoMap;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
@@ -7,9 +9,10 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static IsoMap.Engine.Gamestate;
+using Engine;
+using static Engine.Gamestate;
 
-namespace IsoMap.Engine
+namespace Engine
 {
     abstract public class Scene
     {

@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using IsoMap;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -6,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IsoMap.Engine
+namespace Engine.CommonImagery
 {
     public class Fonts
     {

@@ -4,12 +4,14 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Engine;
+using Engine.CommonImagery;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace IsoMap.Engine
+namespace Engine.CharacterClasses
 {
-    public class MapRepresentation : IDrawable, ICollidable
+    public class MapRepresentation : CommonImagery.IDrawable, ICollidable
     {
         public AnimatedSprite idle_front, idle_back, run;
         public AnimatedSprite currentSprite;
