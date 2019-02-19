@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Engine;
 using static Engine.Gamestate;
+using TiledSharp;
 
 namespace Engine
 {
@@ -22,6 +23,8 @@ namespace Engine
         public int windowHeight;
         //public Player player;
         public Point cursorPosition; //plutôt dans le gamestate?
+
+        Vector2 cursorCarthPos;
 
         protected List<InputType> playerInputs;
 
@@ -94,6 +97,9 @@ namespace Engine
             mouse = Mouse.GetState();
             mouseText = mouse.Position.X/zoom + ":" + mouse.Position.Y/zoom;
             mouseTextPos = new Vector2(windowWidth/zoom - Fonts.Instance.kenPixel16.MeasureString(mouseText).X, 0);
+
+            cursorCarthPos = Tools.IsometricToCarthesian(new TmxMap("Content/testiso.tmx"),
+                new Point(mouse.Position.X / zoom, mouse.Position.Y / zoom), new Point(160, 0));
 #endif
 
         }
@@ -102,6 +108,8 @@ namespace Engine
         {
 #if DEBUG
             mainGame.spriteBatch.DrawString(Fonts.Instance.kenPixel16, mouseText??"", mouseTextPos, Color.Yellow);
+            mainGame.spriteBatch.DrawString(Fonts.Instance.kenPixel16, cursorCarthPos.ToString(), Vector2.Zero, Color.Yellow);
+
 #endif
 
         }

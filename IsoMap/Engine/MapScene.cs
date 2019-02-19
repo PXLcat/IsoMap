@@ -72,7 +72,7 @@ namespace Engine
             //__________________CONTENU DU DRAW "CLASSIQUE"_____________
 
             mainGame.spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null); //SamplerState.PointClamp => Permet de resize du pixel art sans blur
-            Tools.DrawTiled(mainGame.spriteBatch, isometricGrid, 13, 19, Vector2.Zero);
+            Tools.DrawTiled(mainGame.spriteBatch, isometricGrid, 13, 19, new Vector2(0,-1));
 
             snowMap.Draw(mainGame.spriteBatch);
             Player.Instance.currentCharacter.mapRepresentation.Draw(mainGame.spriteBatch);

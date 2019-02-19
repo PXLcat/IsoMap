@@ -15,7 +15,7 @@ namespace IsoMap.Engine
 {
     public class IsometricMap
     {
-        TmxMap snowMap;
+        public TmxMap snowMap;
         Dictionary<string, Texture2D> tilesetsTextures;
 
         Point originTileCoord; //à utiliser pour les Tilesets 32x16
@@ -80,10 +80,7 @@ namespace IsoMap.Engine
                             if ((snowMap.Layers[i].Tiles[y].Gid >= snowMap.Tilesets[ts].FirstGid)
                                 && (snowMap.Layers[i].Tiles[y].Gid < snowMap.Tilesets[ts].FirstGid + snowMap.Tilesets[ts].TileCount))
                             {
-                                Point xAndYPosition = Tools.CarthesianToIsometricTile(snowMap, new Point(orthogonalX -
-                                        ((snowMap.Tilesets[ts].TileHeight == snowMap.Tilesets[ts].TileWidth) ? 1 : 0)
-                                        , orthogonalY -
-                                        ((snowMap.Tilesets[ts].TileHeight == snowMap.Tilesets[ts].TileWidth) ? 1 : 0))
+                                Point xAndYPosition = Tools.CarthesianToIsometricTile(snowMap, new Point(orthogonalX, orthogonalY)
                                         , originTileCoord);
 
                                 mapElements.Add(CreateTile(ts, snowMap.Layers[i].Tiles[y].Gid,
@@ -138,14 +135,6 @@ namespace IsoMap.Engine
             }
             return result;
         }
-
-        //public Point CarthesianToIsometric(Point coordToTranslate, Point origin)
-        //{
-        //    Point upLeftCorner = new Point(origin.X + coordToTranslate.X * (snowMap.TileWidth / 2) - coordToTranslate.Y * (snowMap.TileWidth / 2)
-        //        , origin.Y + coordToTranslate.Y * (snowMap.TileHeight / 2) + coordToTranslate.X * (snowMap.TileHeight / 2));
-        //    Point downLeftCorner = upLeftCorner + new Point(0, snowMap.TileHeight);
-        //    return downLeftCorner;
-        //}
 
         public void Draw(SpriteBatch spriteBatch)
         {

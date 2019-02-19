@@ -41,7 +41,7 @@ namespace Engine
         /// <param name="coordToTranslate">Les coordonnées du point</param>
         /// <param name="origin">L'origine de dessin de la map</param>
         /// <returns>Un point avec les coordonnées X et Y correspondant au bas gauche de la zone de la tile</returns>
-        public static Point CarthesianToIsometricTile(TmxMap map, Point coordToTranslate, Point origin)
+        public static Point CarthesianToIsometricTile(TmxMap map, Point coordToTranslate, Point origin) //TODO vérif que cette méthode est bonne
         {
             Point upLeftCorner = new Point(origin.X + coordToTranslate.X * (map.TileWidth / 2) - coordToTranslate.Y * (map.TileWidth / 2)
                 , origin.Y + coordToTranslate.Y * (map.TileHeight / 2) + coordToTranslate.X * (map.TileHeight / 2));
@@ -49,9 +49,13 @@ namespace Engine
             return downLeftCorner;
         }
 
-        public static Point IsometricToCarthesian(TmxMap map, Point coordToTranslate, Point origin)
+        public static Vector2 IsometricToCarthesian(TmxMap map, Point coordToTranslate, Point origin)
         {
-            int cartX = coordToTranslate.X- 
+            //float cartX = ((coordToTranslate.X - origin.X) / (map.TileWidth/2) + (coordToTranslate.Y - origin.Y) / (map.TileWidth / 2))/2;
+            float cartX = ((coordToTranslate.Y - origin.Y) *2 + (coordToTranslate.X - origin.X)) / map.TileWidth;
+            float cartY = ((coordToTranslate.Y - origin.Y) / (map.TileHeight / 2) - (coordToTranslate.X - origin.X) / (map.TileHeight / 2)) / 2;
+
+            return new Vector2(cartX, cartY);
         }
     }
 }
