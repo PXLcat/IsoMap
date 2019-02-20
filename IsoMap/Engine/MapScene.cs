@@ -32,8 +32,8 @@ namespace Engine
             snowMap = new IsometricMap(); // pas super
             snowMap.Load(mainGame.Content);
 
-            zoom = 2;
-
+            zoom = 2; //C'est ici qu'on définit réellement le zoom
+            //TODO penser à passer à terme en multiplications (*0,5) plutôt qu'een divisions ?
 
             //Player : 
 

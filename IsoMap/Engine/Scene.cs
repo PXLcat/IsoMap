@@ -28,7 +28,7 @@ namespace Engine
 
         protected List<InputType> playerInputs;
 
-        public int zoom = 1;
+        public int zoom = 1 ; //la valeur c'est histoire d'initialiser, ça peut être redéfini dans la scène fille
         public RenderTarget2D renderTarget;
 
         //____Affichage de la position de la souris____

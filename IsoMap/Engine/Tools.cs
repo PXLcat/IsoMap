@@ -54,7 +54,8 @@ namespace Engine
             //float cartX = ((coordToTranslate.X - origin.X) / (map.TileWidth/2) + (coordToTranslate.Y - origin.Y) / (map.TileWidth / 2))/2;
             float cartX = ((coordToTranslate.Y - origin.Y) *2 + (coordToTranslate.X - origin.X)) / map.TileWidth;
             float cartY = ((coordToTranslate.Y - origin.Y) / (map.TileHeight / 2) - (coordToTranslate.X - origin.X) / (map.TileHeight / 2)) / 2;
-
+            //float cartY = ((coordToTranslate.Y - origin.Y)*2)/ map.TileWidth)));
+            //malgré les floats, pas de virgule?
             return new Vector2(cartX, cartY);
         }
     }
