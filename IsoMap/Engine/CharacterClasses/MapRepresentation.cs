@@ -8,10 +8,11 @@ using Engine;
 using Engine.CommonImagery;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using TiledSharp;
 
 namespace Engine.CharacterClasses
 {
-    public class MapRepresentation : CommonImagery.IDrawable, ICollidable
+    public class MapRepresentation : CommonImagery.IDrawable, ICollidable, IMapDrawable
     {
         public AnimatedSprite idle_front, idle_back, run;
         public AnimatedSprite currentSprite;
@@ -25,11 +26,12 @@ namespace Engine.CharacterClasses
         private Texture2D texture;
 
         public Vector2 Movement { get; set; }
-        public int Zorder { get; set; }
+        public int ZOrder { get; set; }
 
         private float deltaTime;
 
         public bool HorizontalFlip { get; set; }
+
 
         public void OnCollision(ICollidable other)
         {
@@ -42,11 +44,22 @@ namespace Engine.CharacterClasses
         public void Load()
         {
             currentSprite = idle_front;
+            UpdateZOrder();
+
+
+        }
+
+        private void UpdateZOrder()
+        {
+            Vector2 gridPosition = Tools.IsometricToCarthesian(new TmxMap("Content/testiso.tmx"),
+                new Point((int)CurrentPosition.X, (int)CurrentPosition.Y), new Point(160, 0)); //TODO faire ça proporement
+            int ZPosition = 1; //TODO changer pour prendre en compte la hauteur
+            ZOrder = (int)gridPosition.X + (int)gridPosition.Y+ ZPosition; 
         }
 
         public void Draw(SpriteBatch sb)
         {
-            currentSprite.Draw(sb, HorizontalFlip);
+            currentSprite.Draw(sb, HorizontalFlip, 1/ZOrder);
             
         }
 
@@ -59,6 +72,8 @@ namespace Engine.CharacterClasses
             }
             CurrentPosition += Movement;
             currentSprite.CurrentPosition = CurrentPosition;
+            UpdateZOrder();
+
             currentSprite.Update(deltaTime);
         }
 

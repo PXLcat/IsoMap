@@ -163,13 +163,12 @@ namespace TiledSharp
             Id = (int)xTile.Attribute("id");
 
             TerrainEdges = new Collection<TmxTerrain>();
-
-            int result;
             TmxTerrain edge;
 
             var strTerrain = (string)xTile.Attribute("terrain") ?? ",,,";
             foreach (var v in strTerrain.Split(',')) {
-                var success = int.TryParse(v, out result);
+
+                var success = int.TryParse(v, out int result);
                 if (success)
                     edge = Terrains[result];
                 else

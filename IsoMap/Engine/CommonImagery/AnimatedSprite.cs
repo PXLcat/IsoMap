@@ -34,6 +34,7 @@ namespace Engine.CommonImagery
         /// Sert à savoir, dans le cas d'une action qui ne boucle pas (ex: attaque), si l'animation a fini de s'afficher.
         /// </summary>
         public bool FirstLoopDone;
+
         /// <summary>
         /// Le compteurFrame augmente de 1 à chaque Update. Lorsqu'il atteint la valeur du FrameSpeed, on passe à la frame (currentFrame) suivante.
         /// </summary>
@@ -89,14 +90,17 @@ namespace Engine.CommonImagery
                 compteurFrame = 0;
             }
         }
-        public override void Draw(SpriteBatch sb, bool horizontalFlip = false)
+
+        
+        /// <param name="sb">Le Spritebatch des graphics du MainGame</param>
+        /// <param name="horizontalFlip"></param>
+        /// <param name="layerDepth">Dans le cas d'une représentation isométrique, le ZOrder</param>
+        public override void Draw(SpriteBatch sb, bool horizontalFlip = false, int layerDepth = 0)
         {
 
-
             Rectangle sourceRectangle = new Rectangle(CurrentFrame * FrameWidth, 0, FrameWidth, FrameHeight);
-            int layerDepth = 0; //TODO attention à layer depth, à ajouter comme para plus tard
-            Vector2 drawPosition = new Vector2(CurrentPosition.X, CurrentPosition.Y + 8); //permet de donner l'impression que le sprite est ancré dans le sol et non en train de flotter au dessus
-
+            //Vector2 drawPosition = new Vector2(CurrentPosition.X, CurrentPosition.Y + 8); //permet de donner l'impression que le sprite est ancré dans le sol et non en train de flotter au dessus
+            Vector2 drawPosition = new Vector2(CurrentPosition.X, CurrentPosition.Y);
 
             //Debug.WriteLine("Current Frame: " + CurrentFrame + " nbColumns: " + Columns);
             if (horizontalFlip)

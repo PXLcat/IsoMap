@@ -6,22 +6,22 @@ using System.Threading.Tasks;
 
 namespace Engine
 {
-    public interface IMapDrawable
+    public interface IMapDrawable //TODO Je fais quoi de cette classe???? Le sprite du perso aussi devrait le contenir
     {
-        /// <summary>
-        /// Cordonnée carthésienne de la position sur une grille isométrique
-        /// </summary>
-        int XPosition { get; set; }
+        ///// <summary>
+        ///// Cordonnée carthésienne de la position sur une grille isométrique
+        ///// </summary>
+        //int XPosition { get; set; }
 
-        /// <summary>
-        /// Cordonnée carthésienne de la position sur une grille isométrique
-        /// </summary>
-        int YPosition { get; set; }
+        ///// <summary>
+        ///// Cordonnée carthésienne de la position sur une grille isométrique
+        ///// </summary>
+        //int YPosition { get; set; }
 
-        /// <summary>
-        /// Cordonnée carthésienne de la position (hauteur) sur une grille isométrique
-        /// </summary>
-        int ZPosition { get; set; }
+        ///// <summary>
+        ///// Cordonnée carthésienne de la position (hauteur) sur une grille isométrique
+        ///// </summary>
+        //int ZPosition { get; set; }
 
         /// <summary>
         /// Détermine la distance en profondeur d'un sprite

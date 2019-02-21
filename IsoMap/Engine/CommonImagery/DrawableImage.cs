@@ -14,7 +14,7 @@ namespace Engine.CommonImagery
         public Texture2D Texture { get; set; }
         public Vector2 CurrentPosition { get; set; }
         private Vector2 center;
-        public int LayerDepth { get; set; }
+        //public int LayerDepth { get; set; }
 
 
         /// <summary>
@@ -29,18 +29,18 @@ namespace Engine.CommonImagery
             CurrentPosition = currentPosition;
             center = new Vector2(Texture.Width / 2, Texture.Height / 2);
 
-            LayerDepth = 0; //TODO rendre modifiable
+            //LayerDepth = 0; //TODO  on passe par le Draw ou par le constructeur?
         }
 
-        public virtual void Draw(SpriteBatch sb, bool horizontalFlip = false)
+        public virtual void Draw(SpriteBatch sb, bool horizontalFlip = false, int layerDepth = 0)
         {
             Debug.WriteLine("Méthode Draw de DrawableImage pour " + Texture.Name);
             if (horizontalFlip)
                 sb.Draw(Texture, CurrentPosition, new Rectangle(0, 0, Texture.Width, Texture.Height), Color.White, 0,
-                    center, 1, SpriteEffects.FlipHorizontally, LayerDepth);
+                    center, 1, SpriteEffects.FlipHorizontally, layerDepth);
             else
                 sb.Draw(Texture, CurrentPosition, new Rectangle(0, 0, Texture.Width, Texture.Height), Color.White, 0,
-                    center, 1, SpriteEffects.None, LayerDepth);
+                    center, 1, SpriteEffects.None, layerDepth);
         }
 
         public virtual void DrawTiled(SpriteBatch sb, int horizontalTilesNb, int verticalTilesNb, bool horizontalFlip = false)

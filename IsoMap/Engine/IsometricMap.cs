@@ -84,7 +84,7 @@ namespace IsoMap.Engine
                                         , originTileCoord);
 
                                 mapElements.Add(CreateTile(ts, snowMap.Layers[i].Tiles[y].Gid,
-                                    xAndYPosition, layerZ, snowMap.Tilesets[ts].TileWidth, snowMap.Tilesets[ts].TileHeight));
+                                    xAndYPosition, (orthogonalX+ orthogonalY+layerZ), snowMap.Tilesets[ts].TileWidth, snowMap.Tilesets[ts].TileHeight));
                             }
                             //else ce Gid ne fait pas partie de ce tileset
                         }
@@ -100,6 +100,7 @@ namespace IsoMap.Engine
                 }
 
             }
+            snowMap = null; //On a plus besoin de la TmxMap, tout est dans la liste
         }
 
         public ModelTile CreateTile(int tilesheetNumber, int gid, Point xAndYPosition, int zPosition,
@@ -143,7 +144,9 @@ namespace IsoMap.Engine
                 spriteBatch.Draw(tilesetsTextures.Values.ElementAt(tile.TileSheetNb),
                     new Rectangle(tile.XPosition, tile.YPosition, tile.Width, tile.Height),
                     tile.SourceRectangle, Color.White, 0f,
-                    new Vector2(0, tile.Height), SpriteEffects.None, 1f); //dessin avec origine en bas à gauche
+                    new Vector2(0, tile.Height), SpriteEffects.None, tile.ZOrder==0?0: 1/tile.ZOrder); //dessin avec origine en bas à gauche //TODO est-ce que ça devrait pas être dans le Draw de ModelTile?
+                
+
             }
 
         }

@@ -49,12 +49,22 @@ namespace Engine
             return downLeftCorner;
         }
 
+        /// <summary>
+        /// ATTENTION CETTE METHODE NE CALCULE PAS LES POSITIONS INFERIEURES A SON ORIGINE
+        /// //TODO
+        /// </summary>
+        /// <param name="map"></param>
+        /// <param name="coordToTranslate"></param>
+        /// <param name="origin"></param>
+        /// <returns></returns>
         public static Vector2 IsometricToCarthesian(TmxMap map, Point coordToTranslate, Point origin)
         {
-            //float cartX = ((coordToTranslate.X - origin.X) / (map.TileWidth/2) + (coordToTranslate.Y - origin.Y) / (map.TileWidth / 2))/2;
-            float cartX = ((coordToTranslate.Y - origin.Y) *2 + (coordToTranslate.X - origin.X)) / map.TileWidth;
-            float cartY = ((coordToTranslate.Y - origin.Y) / (map.TileHeight / 2) - (coordToTranslate.X - origin.X) / (map.TileHeight / 2)) / 2;
-            //float cartY = ((coordToTranslate.Y - origin.Y)*2)/ map.TileWidth)));
+            Point originAtMiddle = new Point(origin.X + map.TileWidth / 2, origin.Y);//l'angle haut de 0,0 . Sinon ça prend le haut gauche du rectangle contenant l'origine
+
+            //int cartX = ((coordToTranslate.X - originAtMiddle.X) / (map.TileWidth/2) + (coordToTranslate.Y - originAtMiddle.Y) / (map.TileWidth / 2))/2;
+            int cartX = ((coordToTranslate.Y - originAtMiddle.Y) *2 + (coordToTranslate.X - originAtMiddle.X)) / map.TileWidth;
+            //int cartY = ((coordToTranslate.Y - originAtMiddle.Y) / (map.TileHeight / 2) - (coordToTranslate.X - originAtMiddle.X) / (map.TileHeight / 2)) / 2;
+            int cartY = ((coordToTranslate.Y - originAtMiddle.Y) *2 - (coordToTranslate.X - originAtMiddle.X)) / map.TileWidth;
             //malgré les floats, pas de virgule?
             return new Vector2(cartX, cartY);
         }
