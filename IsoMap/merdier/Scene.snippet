@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Title>Scene</Title>
+      <Author>
+      </Author>
+      <Description>
+      </Description>
+      <HelpUrl>
+      </HelpUrl>
+      <Shortcut>scene</Shortcut>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal Editable="true">
+          <ID>Scene</ID>
+          <ToolTip>Scene</ToolTip>
+          <Default>Scene</Default>
+          <Function>
+          </Function>
+        </Literal>
+      </Declarations>
+      <Code Language="csharp" Delimiter="$"><![CDATA[        public $Scene$(MainGame mG) : base(mG)
+        {
+
+        }
+        
+        public override void Load()
+        {
+            mainGame.IsMouseVisible = true;
+
+            zoom = 2; //C'est ici qu'on définit réellement le zoom
+
+            base.Load();
+                       
+        }
+
+        public override void Unload()
+        {
+            base.Unload();
+        }
+
+        public override void Update(GameTime gameTime, float deltaTime)
+        {
+            base.Update(gameTime, deltaTime);
+
+        }
+
+        protected void DrawSceneToTexture(RenderTarget2D renderTarget, GameTime gameTime)
+        {
+            // Set the render target
+            mainGame.GraphicsDevice.SetRenderTarget(renderTarget);
+
+            mainGame.GraphicsDevice.DepthStencilState = new DepthStencilState() { DepthBufferEnable = true }; //G PA KONPRI
+
+            // Draw the scene
+            //__________________CONTENU DU DRAW "CLASSIQUE"_____________
+
+            mainGame.spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null); //SamplerState.PointClamp => Permet de resize du pixel art sans blur
+
+
+
+            base.Draw(gameTime);
+
+            mainGame.spriteBatch.End();
+            //__________________________________________________________
+
+            // Drop the render target
+            mainGame.GraphicsDevice.SetRenderTarget(null);
+        }
+        
+        
+        public override void Draw(GameTime gameTime)
+        {
+            DrawSceneToTexture(renderTarget, gameTime);
+            mainGame.GraphicsDevice.Clear(Color.Black);
+            mainGame.spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null); //SamplerState.PointClamp => Permet de resize du pixel art sans blur
+            mainGame.spriteBatch.Draw(renderTarget, new Rectangle(0, 0, 800, 600), Color.White);
+            mainGame.spriteBatch.End();
+
+        }]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>
