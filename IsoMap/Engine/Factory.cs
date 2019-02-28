@@ -127,7 +127,7 @@ namespace Engine
         public void Load() {
             Fonts.Instance.Load(mG);
         }
-        
+
     }
 
 }

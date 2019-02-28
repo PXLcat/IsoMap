@@ -54,7 +54,7 @@ namespace Engine
         public override void Update(GameTime gameTime, float deltaTime)
         {
             base.Update(gameTime, deltaTime);
-            List<InputType> playerInputs = Input.DefineInputs(ref mainGame.gameState.oldKbState);
+            //List<InputType> playerInputs = Input.DefineInputs(ref mainGame.gameState.oldKbState); attention, en double avec le Scene
             Player.Instance.currentCharacter.mapRepresentation.Update(playerInputs , deltaTime);
 
 
