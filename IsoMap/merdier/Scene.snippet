@@ -24,13 +24,24 @@
           </Function>
         </Literal>
       </Declarations>
-      <Code Language="csharp" Delimiter="$"><![CDATA[        public $Scene$(MainGame mG) : base(mG)
+      <Code Language="csharp" Delimiter="$"><![CDATA[        
+#region Texture2D
+
+#endregion
+
+
+		
+		public $Scene$(MainGame mG) : base(mG)
         {
 
         }
         
         public override void Load()
         {
+#region TextureLoading
+
+#endregion
+		
             mainGame.IsMouseVisible = true;
 
             zoom = 2; //C'est ici qu'on définit réellement le zoom
