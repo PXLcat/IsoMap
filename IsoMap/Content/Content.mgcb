@@ -113,6 +113,21 @@
 #begin testiso.tmx
 /copy:testiso.tmx
 
+#begin tiles eau.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:tiles eau.png
+
+#begin tiles eau.tsx
+/copy:tiles eau.tsx
+
 #begin vertical_object.png
 /importer:TextureImporter
 /processor:TextureProcessor

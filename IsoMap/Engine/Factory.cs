@@ -104,15 +104,19 @@ namespace Engine
                         idle_front = String.IsNullOrEmpty(characterDTO.MapRepresentation.Idle_front.ImgFile) ? null :
                         new AnimatedSprite(mG.Content.Load<Texture2D>(characterDTO.MapRepresentation.Idle_front.ImgFile),
                         Vector2.Zero,
-                        characterDTO.MapRepresentation.Idle_front.Columns, characterDTO.MapRepresentation.Idle_front.FrameSpeed),
+                        characterDTO.MapRepresentation.Idle_front.Columns, characterDTO.MapRepresentation.Idle_front.Rows, framespeed:characterDTO.MapRepresentation.Idle_front.FrameSpeed),
                         idle_back = String.IsNullOrEmpty(characterDTO.MapRepresentation.Idle_back.ImgFile) ? null :
                         new AnimatedSprite(mG.Content.Load<Texture2D>(characterDTO.MapRepresentation.Idle_back.ImgFile),
                         Vector2.Zero,
-                        characterDTO.MapRepresentation.Idle_back.Columns, characterDTO.MapRepresentation.Idle_back.FrameSpeed),
-                        run = String.IsNullOrEmpty(characterDTO.MapRepresentation.Run.ImgFile) ? null :
-                        new AnimatedSprite(mG.Content.Load<Texture2D>(characterDTO.MapRepresentation.Run.ImgFile),
+                        characterDTO.MapRepresentation.Idle_back.Columns, characterDTO.MapRepresentation.Idle_back.Rows, framespeed: characterDTO.MapRepresentation.Idle_back.FrameSpeed),
+                        run_front = String.IsNullOrEmpty(characterDTO.MapRepresentation.Run_front.ImgFile) ? null :
+                        new AnimatedSprite(mG.Content.Load<Texture2D>(characterDTO.MapRepresentation.Run_front.ImgFile),
                         Vector2.Zero,
-                        characterDTO.MapRepresentation.Run.Columns, characterDTO.MapRepresentation.Run.FrameSpeed),
+                        characterDTO.MapRepresentation.Run_front.Columns, characterDTO.MapRepresentation.Run_front.Rows, framespeed: characterDTO.MapRepresentation.Run_front.FrameSpeed),
+                        run_back = String.IsNullOrEmpty(characterDTO.MapRepresentation.Run_back.ImgFile) ? null :
+                        new AnimatedSprite(mG.Content.Load<Texture2D>(characterDTO.MapRepresentation.Run_back.ImgFile),
+                        Vector2.Zero,
+                        characterDTO.MapRepresentation.Run_back.Columns, characterDTO.MapRepresentation.Run_back.Rows, framespeed:characterDTO.MapRepresentation.Run_back.FrameSpeed),
                     }
 
                 };

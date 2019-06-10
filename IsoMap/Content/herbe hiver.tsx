@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <tileset name="herbe hiver" tilewidth="32" tileheight="16" tilecount="72" columns="6">
- <image source="Users/cehrhart/Pictures/herbe hiver.png" width="200" height="200"/>
+ <image source="herbe hiver.png" width="200" height="200"/>
  <terraintypes>
   <terrain name="New Terrain" tile="0"/>
  </terraintypes>

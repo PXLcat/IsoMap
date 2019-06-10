@@ -14,7 +14,7 @@ namespace Engine.CharacterClasses
 {
     public class MapRepresentation : CommonImagery.IDrawable, ICollidable, IMapDrawable
     {
-        public AnimatedSprite idle_front, idle_back, run;
+        public AnimatedSprite idle_front, idle_back, run_front, run_back;
         public AnimatedSprite currentSprite;
 
         public Rectangle HitBox => throw new NotImplementedException();
@@ -59,7 +59,7 @@ namespace Engine.CharacterClasses
 
         public void Draw(SpriteBatch sb)
         {
-            currentSprite.Draw(sb, HorizontalFlip, 1/ZOrder);
+            currentSprite.Draw(sb,1/ZOrder, HorizontalFlip);
             
         }
 

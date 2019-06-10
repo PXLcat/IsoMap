@@ -31,11 +31,14 @@ namespace IsoMap.Engine
         public void Load(ContentManager contentManager)
         {
             snowMap = new TmxMap("Content/testiso.tmx");
-            tilesetsTextures = new Dictionary<string, Texture2D>
+            tilesetsTextures = new Dictionary<string, Texture2D>();
+            foreach (TmxTileset tileset in snowMap.Tilesets)
             {
-                { "grassTileset", contentManager.Load<Texture2D>(snowMap.Tilesets[0].Name) },//se référer à l'ordre dans le xml
-                { "decorNeigeTileset", contentManager.Load<Texture2D>(snowMap.Tilesets[1].Name) }//TODO générer par Factory
-            };
+                tilesetsTextures.Add(tileset.Name, contentManager.Load<Texture2D>(tileset.Name));
+            }
+
+
+
 
             tileOrBlockWidth = snowMap.Tilesets[0].TileWidth;
             tileSize = new Point(snowMap.Tilesets[0].TileWidth, snowMap.Tilesets[0].TileHeight);
@@ -103,11 +106,21 @@ namespace IsoMap.Engine
             snowMap = null; //On a plus besoin de la TmxMap, tout est dans la liste
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="tilesheetNumber"></param>
+        /// <param name="gid"></param>
+        /// <param name="xAndYPosition"></param>
+        /// <param name="zPosition"></param>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
+        /// <returns></returns>
         public ModelTile CreateTile(int tilesheetNumber, int gid, Point xAndYPosition, int zPosition,
             int width, int height)
         {
             Vector2 currentPosition = new Vector2(xAndYPosition.X, xAndYPosition.Y);//TODO choisir entre le point et vector2 pour pas avoir à faire ça
-            Rectangle sourceRectangle = new Rectangle((gid - 1) % snowMap.Tilesets[tilesheetNumber].Columns.Value * snowMap.Tilesets[tilesheetNumber].TileWidth
+            Rectangle sourceRectangle = new Rectangle((gid - snowMap.Tilesets[tilesheetNumber].FirstGid) % snowMap.Tilesets[tilesheetNumber].Columns.Value * snowMap.Tilesets[tilesheetNumber].TileWidth
                                     , (int)Math.Floor((double)((gid - snowMap.Tilesets[tilesheetNumber].FirstGid) / snowMap.Tilesets[tilesheetNumber].Columns.Value) * snowMap.Tilesets[tilesheetNumber].TileHeight)
                                     , width,height);
             return new TileGround(currentPosition, sourceRectangle, width, height, zPosition, tilesheetNumber); 
@@ -141,7 +154,7 @@ namespace IsoMap.Engine
         {
             foreach (ModelTile tile in mapElements)
             {
-                spriteBatch.Draw(tilesetsTextures.Values.ElementAt(tile.TileSheetNb),
+                spriteBatch.Draw(tilesetsTextures.Values.ElementAt(tile.TileSheetNb), //error sur le tileSheetNumbler
                     new Rectangle(tile.XPosition, tile.YPosition, tile.Width, tile.Height),
                     tile.SourceRectangle, Color.White, 0f,
                     new Vector2(0, tile.Height), SpriteEffects.None, tile.ZOrder==0?0: 1/tile.ZOrder); //dessin avec origine en bas à gauche //TODO est-ce que ça devrait pas être dans le Draw de ModelTile?

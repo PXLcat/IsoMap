@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset name="décor neige tiles" tilewidth="32" tileheight="32" tilecount="81" columns="9">
- <image source="Users/cehrhart/Pictures/décor neige tiles.png" width="300" height="300"/>
+<tileset version="1.2" tiledversion="1.2.3" name="décor neige tiles" tilewidth="32" tileheight="32" tilecount="81" columns="9">
+ <image source="décor neige tiles.png" width="300" height="300"/>
  <terraintypes>
   <terrain name="Pond" tile="21"/>
  </terraintypes>
+ <tile id="0">
+  <objectgroup draworder="index">
+   <object id="4" x="0" y="24">
+    <polygon points="0,0 16,8 32,0 16,-7"/>
+   </object>
+  </objectgroup>
+ </tile>
  <tile id="2" terrain="0,0,,"/>
  <tile id="11" terrain="0,,0,"/>
  <tile id="20" terrain=",,0,0"/>

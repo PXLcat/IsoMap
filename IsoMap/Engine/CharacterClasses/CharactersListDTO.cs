@@ -34,12 +34,14 @@ namespace Engine.CharacterClasses
     {
         public SpriteStateDTO Idle_front { get; set; }
         public SpriteStateDTO Idle_back { get; set; }
-        public SpriteStateDTO Run { get; set; }
+        public SpriteStateDTO Run_front { get; set; }
+        public SpriteStateDTO Run_back { get; set; }
     }
     public class SpriteStateDTO
     {
         public String ImgFile { get; set; }
         public int Columns { get; set; }
+        public int Rows { get; set; }
         public int FrameSpeed { get; set; }
     }
 }
