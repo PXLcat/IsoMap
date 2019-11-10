@@ -13,6 +13,13 @@
  </tile>
  <tile id="2" terrain="0,0,,"/>
  <tile id="11" terrain="0,,0,"/>
+ <tile id="12">
+  <objectgroup draworder="index">
+   <object id="7" x="7.875" y="26.75">
+    <polygon points="0,0 6,4.375 13.5,-4.625"/>
+   </object>
+  </objectgroup>
+ </tile>
  <tile id="20" terrain=",,0,0"/>
  <tile id="21" terrain="0,0,0,0"/>
  <tile id="29" terrain=",0,,0"/>

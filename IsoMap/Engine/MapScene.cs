@@ -20,6 +20,8 @@ namespace Engine
 
         IsometricMap snowMap;
 
+        CharacterClasses.MapRepresentation legisteTest;
+
         public MapScene(MainGame mG) : base(mG)
         {
 
@@ -33,15 +35,21 @@ namespace Engine
             snowMap.Load(mainGame.Content);
 
             zoom = 2; //C'est ici qu'on définit réellement le zoom
-            //TODO penser à passer à terme en multiplications (*0,5) plutôt qu'een divisions ?
+            
 
             //Player : 
 
             Player.Instance.Load(mainGame);
-            Factory.Instance.LoadPlayer();
-            Player.Instance.currentCharacter.mapRepresentation.Load();
-            //TODO appel à une méthode factory qui créera un élément avec animated sprite et coord déplaçables
+            Factory.Instance.LoadPlayer(); //ça charge le json avec les données des persos du joueur
+            Player.Instance.currentCharacter.mapRepresentation.Load(); //ça initialise le perso
+            legisteTest = Factory.Instance.LoadTestCharacter();
+            legisteTest.HitboxShape = new CommonImagery.Polygon();
+            legisteTest.HitboxShape.Points.Add(new CommonImagery.Vector(0, -1));
+            legisteTest.HitboxShape.Points.Add(new CommonImagery.Vector(legisteTest.HitboxShape.Points.ElementAt(0).X-10, legisteTest.HitboxShape.Points.ElementAt(0).Y-7));
+            legisteTest.HitboxShape.Points.Add(new CommonImagery.Vector(legisteTest.HitboxShape.Points.ElementAt(0).X, legisteTest.HitboxShape.Points.ElementAt(0).Y - 15));
+            legisteTest.HitboxShape.Points.Add(new CommonImagery.Vector(legisteTest.HitboxShape.Points.ElementAt(0).X + 10, legisteTest.HitboxShape.Points.ElementAt(0).Y - 7));
 
+            legisteTest.UpdateZOrder();
             base.Load();
                        
         }
@@ -75,7 +83,9 @@ namespace Engine
             Tools.DrawTiled(mainGame.spriteBatch, isometricGrid, 13, 19, new Vector2(0,-1));
 
             snowMap.Draw(mainGame.spriteBatch);
-            Player.Instance.currentCharacter.mapRepresentation.Draw(mainGame.spriteBatch);
+            //Player.Instance.currentCharacter.mapRepresentation.Draw(mainGame.spriteBatch);
+
+            legisteTest.Draw(mainGame.spriteBatch);
 
             base.Draw(gameTime);
 

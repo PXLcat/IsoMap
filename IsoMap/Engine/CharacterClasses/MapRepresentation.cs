@@ -12,15 +12,34 @@ using TiledSharp;
 
 namespace Engine.CharacterClasses
 {
-    public class MapRepresentation : CommonImagery.IDrawable, ICollidable, IMapDrawable
+    public class MapRepresentation : CommonImagery.IDrawable, /*ICollidable,*/ IMapDrawable
     {
-        public AnimatedSprite idle_front, idle_back, run_front, run_back;
+        public AnimatedSprite idle_n, idle_ne, idle_e, idle_s, idle_se;
+        public AnimatedSprite walk_n, walk_ne, walk_e, walk_se, walk_s;
         public AnimatedSprite currentSprite;
 
-        public Rectangle HitBox => throw new NotImplementedException();
+        public Polygon CurrentHitBox
+        {
+            get {
+                Polygon result = new Polygon();
+                foreach (var shapePoint in HitboxShape.Points)
+                {
+                    result.Points.Add(new Vector(CurrentPosition.X + shapePoint.X, CurrentPosition.Y + shapePoint.Y));
+                }
+                return result;
+            }
+        }
 
         public Vector2 CurrentPosition { get => currentPosition; set => currentPosition = value; }
-        public Texture2D Texture { get => texture; set => texture = value; }
+        public Texture2D Texture { get => texture; set => texture = value; } //TODO: c'était pour implémenter l'interface IDrawable : contourner
+        private Polygon hitboxShape;
+
+        public Polygon HitboxShape
+        {
+            get { return hitboxShape; }
+            set { hitboxShape = value; }
+        }
+
 
         private Vector2 currentPosition;
         private Texture2D texture;
@@ -31,6 +50,10 @@ namespace Engine.CharacterClasses
         private float deltaTime;
 
         public bool HorizontalFlip { get; set; }
+
+#if DEBUG
+        public Texture2D textureDebug;
+#endif
 
 
         public void OnCollision(ICollidable other)
@@ -43,13 +66,12 @@ namespace Engine.CharacterClasses
         }
         public void Load()
         {
-            currentSprite = idle_front;
+            currentSprite = idle_se;
             UpdateZOrder();
-
 
         }
 
-        private void UpdateZOrder()
+        public void UpdateZOrder()
         {
             Vector2 gridPosition = Tools.IsometricToCarthesian(new TmxMap("Content/testiso.tmx"),
                 new Point((int)CurrentPosition.X, (int)CurrentPosition.Y), new Point(160, 0)); //TODO faire ça proporement
@@ -59,9 +81,16 @@ namespace Engine.CharacterClasses
 
         public void Draw(SpriteBatch sb)
         {
+#if DEBUG
+            textureDebug = new Texture2D(sb.GraphicsDevice, 1, 1); //tention doublon à chaque Draw
+            textureDebug.SetData(new[] { Color.Red });
+            //VisualDebug.DrawPosition(sb, textureDebug, CurrentPosition);
+            //VisualDebug.DrawSATHitbox(sb, textureDebug, CurrentHitBox);
+#endif
             currentSprite.Draw(sb,1/ZOrder, HorizontalFlip);
-            
+            VisualDebug.DrawSATHitbox(sb, textureDebug, CurrentHitBox);
         }
+
 
         public void Update(List<InputType> playerInputs, float deltaTime) {
             Movement = Vector2.Zero;
@@ -74,60 +103,93 @@ namespace Engine.CharacterClasses
             currentSprite.CurrentPosition = CurrentPosition;
             UpdateZOrder();
 
+            if (Movement != Vector2.Zero)
+            {
+
+                //TODO Paramètre orientation/status?
+            }
+
             currentSprite.Update(deltaTime);
         }
 
         private void SortAndExecuteInput(List<InputType> inputs)
         {
-            if (inputs.Contains(InputType.LEFT) && inputs.Contains(InputType.RIGHT))
+            if (inputs.Contains(InputType.UP) && !inputs.Contains(InputType.DOWN))
             {
-                //ResetPose();
+                if (inputs.Contains(InputType.LEFT) && !inputs.Contains(InputType.RIGHT))
+                    MoveNorthWest();
+                else if (inputs.Contains(InputType.RIGHT) && !inputs.Contains(InputType.LEFT))
+                    MoveNorthEast();
+                else
+                    MoveNorth();                
             }
-            else if (inputs.Contains(InputType.LEFT) && !inputs.Contains(InputType.RIGHT))
+            else if (inputs.Contains(InputType.DOWN) && !inputs.Contains(InputType.UP))
             {
-                MoveLeft();
+                if (inputs.Contains(InputType.LEFT) && !inputs.Contains(InputType.RIGHT))
+                    MoveSouthWest();
+                else if (inputs.Contains(InputType.RIGHT) && !inputs.Contains(InputType.LEFT))
+                    MoveSouthEast();
+                else
+                    MoveSouth();
             }
             else if (inputs.Contains(InputType.RIGHT) && !inputs.Contains(InputType.LEFT))
-            {
-                MoveRight();
-            }
-            if (inputs.Contains(InputType.UP))
-            {
-                MoveUp();
-            }
-            else if (inputs.Contains(InputType.DOWN))
-            {
-                MoveDown();
-            }
-
+                MoveEast();
+            else if (inputs.Contains(InputType.LEFT) && !inputs.Contains(InputType.RIGHT))
+                MoveWest();
         }
 
-        private void MoveDown()
+        #region DEPLACEMENTS
+
+        private void MoveNorth()
         {
-            Movement += new Vector2(-4 * deltaTime, 2 * deltaTime); //remplacer par vitesse de déplacement
-            currentSprite = idle_front;
+            Movement += new Vector2(0, -2 * deltaTime);
+            currentSprite = idle_n;
             HorizontalFlip = false;
         }
-
-        private void MoveUp()
+        private void MoveNorthEast()
         {
-            Movement += new Vector2(4 * deltaTime, -2 * deltaTime);
-            currentSprite = idle_back;
+            Movement += new Vector2(2 * deltaTime, -1 * deltaTime);
+            currentSprite = idle_ne;
             HorizontalFlip = false;
         }
-
-        private void MoveRight()
+        private void MoveEast()
         {
-            Movement += new Vector2(4 * deltaTime, 2 * deltaTime);
-            currentSprite = idle_front;
+            Movement += new Vector2(2 * deltaTime, -0);
+            currentSprite = idle_e;
+            HorizontalFlip = false;
+        }
+        private void MoveSouthEast()
+        {
+            Movement += new Vector2(2 * deltaTime, 1 * deltaTime);
+            currentSprite = idle_se;
+            HorizontalFlip = false;
+        }
+        private void MoveSouth()
+        {
+            Movement += new Vector2(0, 2 * deltaTime);
+            currentSprite = idle_s;
             HorizontalFlip = true;
         }
 
-        private void MoveLeft()
+        private void MoveSouthWest()
         {
-            Movement += new Vector2(-4 * deltaTime, -2 * deltaTime);
-            currentSprite = idle_back;
+            Movement += new Vector2(-2 * deltaTime, 1 * deltaTime); // TODO remplacer par vitesse de déplacement
+            currentSprite = idle_se;
             HorizontalFlip = true;
         }
+        private void MoveWest()
+        {
+            Movement += new Vector2(-2 * deltaTime, 0);
+            currentSprite = idle_e;
+            HorizontalFlip = true;
+        }
+        private void MoveNorthWest()
+        {
+            Movement += new Vector2(-2 * deltaTime, -1 * deltaTime);
+            currentSprite = idle_ne;
+            HorizontalFlip = true;
+        }
+
+        #endregion
     }
 }

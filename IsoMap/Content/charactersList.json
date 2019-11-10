@@ -33,29 +33,69 @@
         }
       },
       "mapRepresentation": {
-        "idle_front": {
-          "imgFile": "Images/ciale_map_idle_front",
-          "columns": 2,
-          "rows": 1,
-          "framespeed": "12"
+        "idle": {
+          "north": {
+            "imgFile": "Images/ciale_map_idle_n",
+            "columns": 2,
+            "rows": 1,
+            "framespeed": "12"
+          },
+          "northeast": {
+            "imgFile": "Images/ciale_map_idle_ne",
+            "columns": 2,
+            "rows": 1,
+            "framespeed": "12"
+          },
+          "east": {
+            "imgFile": "Images/ciale_map_idle_e",
+            "columns": 2,
+            "rows": 1,
+            "framespeed": "12"
+          },
+          "southeast": {
+            "imgFile": "Images/ciale_map_idle_se",
+            "columns": 2,
+            "rows": 1,
+            "framespeed": "12"
+          },
+          "south": {
+            "imgFile": "Images/ciale_map_idle_s",
+            "columns": 2,
+            "rows": 1,
+            "framespeed": "12"
+          }
         },
-        "idle_back": {
-          "imgFile": "Images/ciale_map_idle_back",
-          "columns": 2,
-          "rows": 1,
-          "framespeed": "12"
-        },
-        "run_front": {
-          "imgFile": "Images/ciale_map_idle_front",
-          "columns": "2",
-          "rows": "1",
-          "framespeed": ""
-        },
-        "run_back": {
-          "imgFile": "Images/ciale_map_idle_back",
-          "columns": "2",
-          "rows": "1",
-          "framespeed": ""
+        "walk": {
+          "north": {
+            "imgFile": "Images/ciale_map_idle_n",
+            "columns": "2",
+            "rows": "1",
+            "framespeed": ""
+          },
+          "northeast": {
+            "imgFile": "Images/ciale_map_idle_ne",
+            "columns": "2",
+            "rows": "1",
+            "framespeed": ""
+          },
+          "east": {
+            "imgFile": "Images/ciale_map_idle_e",
+            "columns": "2",
+            "rows": "1",
+            "framespeed": ""
+          },
+          "southeast": {
+            "imgFile": "Images/ciale_map_walk_sw",
+            "columns": "3",
+            "rows": "1",
+            "framespeed": ""
+          },
+          "south": {
+            "imgFile": "Images/ciale_map_idle_s",
+            "columns": "2",
+            "rows": "1",
+            "framespeed": ""
+          }
         }
       }
     }

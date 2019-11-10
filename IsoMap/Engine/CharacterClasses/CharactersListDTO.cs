@@ -25,19 +25,25 @@ namespace Engine.CharacterClasses
     }
     public class SideRepresentationDTO
     {
-        public SpriteStateDTO Idle { get; set; }
-        public SpriteStateDTO Run { get; set; }
-        public SpriteStateDTO Jump { get; set; }
-        public SpriteStateDTO Fall { get; set; }
+        public SpriteDTO Idle { get; set; }
+        public SpriteDTO Run { get; set; }
+        public SpriteDTO Jump { get; set; }
+        public SpriteDTO Fall { get; set; }
     }
     public class MapRepresentationDTO
     {
-        public SpriteStateDTO Idle_front { get; set; }
-        public SpriteStateDTO Idle_back { get; set; }
-        public SpriteStateDTO Run_front { get; set; }
-        public SpriteStateDTO Run_back { get; set; }
+        public SpriteStateDTO Idle { get; set; }
+        public SpriteStateDTO Walk { get; set; }
     }
     public class SpriteStateDTO
+    {
+        public SpriteDTO North { get; set; }
+        public SpriteDTO Northeast { get; set; }
+        public SpriteDTO East { get; set; }
+        public SpriteDTO SouthEast { get; set; }
+        public SpriteDTO South { get; set; }
+    }
+    public class SpriteDTO
     {
         public String ImgFile { get; set; }
         public int Columns { get; set; }
