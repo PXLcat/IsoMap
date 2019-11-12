@@ -99,8 +99,10 @@ namespace Engine.CharacterClasses
             {
                 SortAndExecuteInput(playerInputs);
             }
+
             CurrentPosition += Movement;
             currentSprite.CurrentPosition = CurrentPosition;
+            CurrentHitBox.BuildEdges(); //n'a pas aidé
             UpdateZOrder();
 
             if (Movement != Vector2.Zero)

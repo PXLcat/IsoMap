@@ -50,6 +50,7 @@
     <Compile Include="Engine\CharacterClasses\CharactersListDTO.cs" />
     <Compile Include="Engine\CharacterClasses\MapRepresentation.cs" />
     <Compile Include="Engine\CommonImagery\Polygon.cs" />
+    <Compile Include="Engine\CommonImagery\SATCollision.cs" />
     <Compile Include="Engine\CommonImagery\Vector.cs" />
     <Compile Include="Engine\CommonImagery\VisualDebug.cs" />
     <Compile Include="Engine\IMapDrawable.cs" />

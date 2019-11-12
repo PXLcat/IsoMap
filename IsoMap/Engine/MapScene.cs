@@ -1,4 +1,5 @@
 ﻿using Engine;
+using Engine.CommonImagery;
 using IsoMap;
 using IsoMap.Engine;
 using Microsoft.Xna.Framework;
@@ -10,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TiledSharp;
+using static Engine.CommonImagery.SATCollision;
 
 namespace Engine
 {
@@ -19,6 +21,7 @@ namespace Engine
         
 
         IsometricMap snowMap;
+        PolygonCollisionResult collision;
 
         CharacterClasses.MapRepresentation legisteTest;
 
@@ -42,6 +45,13 @@ namespace Engine
             Player.Instance.Load(mainGame);
             Factory.Instance.LoadPlayer(); //ça charge le json avec les données des persos du joueur
             Player.Instance.currentCharacter.mapRepresentation.Load(); //ça initialise le perso
+            //test__
+            Player.Instance.currentCharacter.mapRepresentation.HitboxShape = new CommonImagery.Polygon();
+            Player.Instance.currentCharacter.mapRepresentation.HitboxShape.Points.Add(new CommonImagery.Vector(0, -1));
+            Player.Instance.currentCharacter.mapRepresentation.HitboxShape.Points.Add(new CommonImagery.Vector(Player.Instance.currentCharacter.mapRepresentation.HitboxShape.Points.ElementAt(0).X - 10, Player.Instance.currentCharacter.mapRepresentation.HitboxShape.Points.ElementAt(0).Y - 7));
+            Player.Instance.currentCharacter.mapRepresentation.HitboxShape.Points.Add(new CommonImagery.Vector(Player.Instance.currentCharacter.mapRepresentation.HitboxShape.Points.ElementAt(0).X, Player.Instance.currentCharacter.mapRepresentation.HitboxShape.Points.ElementAt(0).Y - 15));
+            Player.Instance.currentCharacter.mapRepresentation.HitboxShape.Points.Add(new CommonImagery.Vector(Player.Instance.currentCharacter.mapRepresentation.HitboxShape.Points.ElementAt(0).X + 10, Player.Instance.currentCharacter.mapRepresentation.HitboxShape.Points.ElementAt(0).Y - 7));
+            //test__
             legisteTest = Factory.Instance.LoadTestCharacter();
             legisteTest.HitboxShape = new CommonImagery.Polygon();
             legisteTest.HitboxShape.Points.Add(new CommonImagery.Vector(0, -1));
@@ -64,7 +74,7 @@ namespace Engine
             base.Update(gameTime, deltaTime);
             //List<InputType> playerInputs = Input.DefineInputs(ref mainGame.gameState.oldKbState); attention, en double avec le Scene
             Player.Instance.currentCharacter.mapRepresentation.Update(playerInputs , deltaTime);
-
+            collision = SATCollision.CheckPolygonCollision(Player.Instance.currentCharacter.mapRepresentation.CurrentHitBox, legisteTest.CurrentHitBox, new Vector(0,0));
 
             snowMap.Update();
         }
@@ -83,11 +93,16 @@ namespace Engine
             Tools.DrawTiled(mainGame.spriteBatch, isometricGrid, 13, 19, new Vector2(0,-1));
 
             snowMap.Draw(mainGame.spriteBatch);
-            //Player.Instance.currentCharacter.mapRepresentation.Draw(mainGame.spriteBatch);
+            Player.Instance.currentCharacter.mapRepresentation.Draw(mainGame.spriteBatch);
 
             legisteTest.Draw(mainGame.spriteBatch);
 
             base.Draw(gameTime);
+
+            if (collision.Intersect)
+            {
+                mainGame.spriteBatch.DrawString(Fonts.Instance.kenPixel16, "collision", new Vector2(200,100), Color.Red);
+            }
 
             mainGame.spriteBatch.End();
             //__________________________________________________________
