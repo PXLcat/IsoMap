@@ -131,6 +131,8 @@ namespace IsoMap.Engine
 
         }
 
+
+        //PAS UTILSÉ POUR POUR L'INSTANT__
         public enum TileStyle
         {
             FLAT,
@@ -149,6 +151,7 @@ namespace IsoMap.Engine
             }
             return result;
         }
+        //______
 
         public void Draw(SpriteBatch spriteBatch)
         {

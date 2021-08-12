@@ -47,17 +47,17 @@ namespace Engine
             Player.Instance.currentCharacter.mapRepresentation.Load(); //ça initialise le perso
             //test__
             Player.Instance.currentCharacter.mapRepresentation.HitboxShape = new CommonImagery.Polygon();
-            Player.Instance.currentCharacter.mapRepresentation.HitboxShape.Points.Add(new CommonImagery.Vector(0, -1));
-            Player.Instance.currentCharacter.mapRepresentation.HitboxShape.Points.Add(new CommonImagery.Vector(Player.Instance.currentCharacter.mapRepresentation.HitboxShape.Points.ElementAt(0).X - 10, Player.Instance.currentCharacter.mapRepresentation.HitboxShape.Points.ElementAt(0).Y - 7));
-            Player.Instance.currentCharacter.mapRepresentation.HitboxShape.Points.Add(new CommonImagery.Vector(Player.Instance.currentCharacter.mapRepresentation.HitboxShape.Points.ElementAt(0).X, Player.Instance.currentCharacter.mapRepresentation.HitboxShape.Points.ElementAt(0).Y - 15));
-            Player.Instance.currentCharacter.mapRepresentation.HitboxShape.Points.Add(new CommonImagery.Vector(Player.Instance.currentCharacter.mapRepresentation.HitboxShape.Points.ElementAt(0).X + 10, Player.Instance.currentCharacter.mapRepresentation.HitboxShape.Points.ElementAt(0).Y - 7));
+            Player.Instance.currentCharacter.mapRepresentation.HitboxShape.Points.Add(new CommonImagery.Vector(0, 2));
+            Player.Instance.currentCharacter.mapRepresentation.HitboxShape.Points.Add(new CommonImagery.Vector(Player.Instance.currentCharacter.mapRepresentation.HitboxShape.Points.ElementAt(0).X - 9, Player.Instance.currentCharacter.mapRepresentation.HitboxShape.Points.ElementAt(0).Y - 6));
+            Player.Instance.currentCharacter.mapRepresentation.HitboxShape.Points.Add(new CommonImagery.Vector(Player.Instance.currentCharacter.mapRepresentation.HitboxShape.Points.ElementAt(0).X, Player.Instance.currentCharacter.mapRepresentation.HitboxShape.Points.ElementAt(0).Y - 12));
+            Player.Instance.currentCharacter.mapRepresentation.HitboxShape.Points.Add(new CommonImagery.Vector(Player.Instance.currentCharacter.mapRepresentation.HitboxShape.Points.ElementAt(0).X + 9, Player.Instance.currentCharacter.mapRepresentation.HitboxShape.Points.ElementAt(0).Y - 6));
             //test__
             legisteTest = Factory.Instance.LoadTestCharacter();
             legisteTest.HitboxShape = new CommonImagery.Polygon();
-            legisteTest.HitboxShape.Points.Add(new CommonImagery.Vector(0, -1));
-            legisteTest.HitboxShape.Points.Add(new CommonImagery.Vector(legisteTest.HitboxShape.Points.ElementAt(0).X-10, legisteTest.HitboxShape.Points.ElementAt(0).Y-7));
-            legisteTest.HitboxShape.Points.Add(new CommonImagery.Vector(legisteTest.HitboxShape.Points.ElementAt(0).X, legisteTest.HitboxShape.Points.ElementAt(0).Y - 15));
-            legisteTest.HitboxShape.Points.Add(new CommonImagery.Vector(legisteTest.HitboxShape.Points.ElementAt(0).X + 10, legisteTest.HitboxShape.Points.ElementAt(0).Y - 7));
+            legisteTest.HitboxShape.Points.Add(new CommonImagery.Vector(0, 2));
+            legisteTest.HitboxShape.Points.Add(new CommonImagery.Vector(legisteTest.HitboxShape.Points.ElementAt(0).X-9, legisteTest.HitboxShape.Points.ElementAt(0).Y-6));
+            legisteTest.HitboxShape.Points.Add(new CommonImagery.Vector(legisteTest.HitboxShape.Points.ElementAt(0).X, legisteTest.HitboxShape.Points.ElementAt(0).Y - 12));
+            legisteTest.HitboxShape.Points.Add(new CommonImagery.Vector(legisteTest.HitboxShape.Points.ElementAt(0).X + 9, legisteTest.HitboxShape.Points.ElementAt(0).Y - 6));
 
             legisteTest.UpdateZOrder();
             base.Load();
